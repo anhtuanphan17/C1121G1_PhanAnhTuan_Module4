@@ -13,10 +13,11 @@
 <body>
 <form method="post" action="search">
 
-<label>Search Word</label>
-<input type="text" name="searchWord">
+    <label>Search Word</label>
+    <input type="text" name="searchWord">
     <button type="submit" value="Search">Search</button>
     <input type="text" value="${result}">
+
 </form>
 
 
