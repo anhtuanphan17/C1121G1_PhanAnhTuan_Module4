@@ -20,6 +20,7 @@ public class EmailRepo implements IEmailRepo {
         emailList.add(new Email(2,"chien12@gmail.com","Japanese",20,false,"Chien Le"));
         emailList.add(new Email(3,"huy1234@gmail.com","English",15,true,"Huy Tran"));
         languageList = Arrays.asList("Vietnamese","Japanese","English","Chinese");
+
     }
 
     private static Integer id = emailList.size()+1;

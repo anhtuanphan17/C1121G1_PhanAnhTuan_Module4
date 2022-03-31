@@ -15,7 +15,7 @@
 
 <h2>Email List</h2>
 <h5><a href="/create">Create new email</a></h5>
-<form>
+<form method="post" action="edit">
     <table border="1">
         <tr>
             <th>ID</th>
