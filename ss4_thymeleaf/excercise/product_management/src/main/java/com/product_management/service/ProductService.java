@@ -3,10 +3,7 @@ package com.product_management.service;
 import com.product_management.model.Product;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ProductService implements IProductService {
@@ -53,7 +50,13 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void searchProductByName(String search) {
-        
+    public Product searchProductByName(String search) {
+        List<Product> products = new ArrayList<>(productList.values());
+        for (Product product:products){
+            if(product.getName().equals(search)){
+                return product;
+            }
+        }
+        return null;
     }
 }

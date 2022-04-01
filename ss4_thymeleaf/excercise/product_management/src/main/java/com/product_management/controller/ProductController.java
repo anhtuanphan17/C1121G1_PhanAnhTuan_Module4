@@ -72,9 +72,9 @@ public class ProductController {
 
     @PostMapping("/search")
     public String searchProductByName(@RequestParam String search, ModelMap modelMap){
-        iProductService.searchProductByName(search);
-
-        return "list";
+       Product product = iProductService.searchProductByName(search);
+        modelMap.addAttribute("product",product);
+        return "search";
     }
 
 
