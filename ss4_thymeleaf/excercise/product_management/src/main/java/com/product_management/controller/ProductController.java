@@ -32,7 +32,7 @@ public class ProductController {
 
     @RequestMapping(value = "/create",method = RequestMethod.POST)
     public String createProduct(@ModelAttribute Product product){
-    product.setId((int)Math.random()*1000);
+    product.setId((int) (Math.random() * 1000));
     iProductService.create(product);
         return "redirect:product";
     }
