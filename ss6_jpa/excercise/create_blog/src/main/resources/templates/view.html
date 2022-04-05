@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <div th:replace="/layout::bootrap-link"></div>
 </head>
 <body>
+<div th:replace="/layout ::navbar"></div>
 <p>
     <a th:href="@{/home}">
         Back to blog list

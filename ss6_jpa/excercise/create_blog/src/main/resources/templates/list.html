@@ -3,43 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<div>
 
-    <h1 style="text-align: center">Blog List</h1>
-    <h2><a th:href="@{/create}">Create new blog</a></h2>
+<div th:replace="/layout :: navbar">
 
 </div>
 
-
 <div>
+    <h1 style="text-align: center">Blog List</h1>
+</div>
 
-    <table style="border: 1px">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Content</th>
-            <th>Description</th>
-        </tr>
+<div class="container">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h2><a th:href="@{/create}">Create new blog</a></h2>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Content</th>
+                <th>Description</th>
+            </tr>
 
-        <tr th:each="blogs, loop:${blogList}">
-            <td th:text="${loop.count}"></td>
-            <td th:text="${blogs.title}"></td>
-            <td th:text="${blogs.author}"></td>
-            <td th:text="${blogs.content}"></td>
-            <td th:text="${blogs.description}"></td>
-            <td>
-                <a th:href="@{/edit/{id}/(id=${blogs.id})}"> Edit</a>
-                <a th:href="@{/delete/{id}/(id=${blogs.id})}">Delete</a>
-                <a th:href="@{/view/{id}/(id=${blogs.id})}">View</a>
-            </td>
-        </tr>
+            <tr th:each="blogs, loop:${blogList}">
+                <td th:text="${loop.count}"></td>
+                <td th:text="${blogs.title}"></td>
+                <td th:text="${blogs.author}"></td>
+                <td th:text="${blogs.content}"></td>
+                <td th:text="${blogs.description}"></td>
+
+                <td><a th:href="@{/edit/{id}/(id=${blogs.id})}"> Edit</a></td>
+                <td><a th:href="@{/delete/{id}/(id=${blogs.id})}">Delete</a></td>
+                <td><a th:href="@{/view/{id}/(id=${blogs.id})}">View</a></td>
+
+            </tr>
 
 
-    </table>
+        </table>
+    </div>
+    <div class="col-2">
 
+    </div>
 </div>
 </body>
 </html>
