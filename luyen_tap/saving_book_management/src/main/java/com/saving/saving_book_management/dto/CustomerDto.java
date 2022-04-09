@@ -1,27 +1,28 @@
 package com.saving.saving_book_management.dto;
 
-import com.saving.saving_book_management.model.SavingBook;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 public class CustomerDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer customerId;
+
+    @NotBlank
+    @Pattern(regexp = "(^$|^(C-){1}[0-9]{3,5}$)", message = "please input correct format as C-XXX")
     private String customerCode;
+    @NotEmpty
     @Size(min = 2, max = 50)
-    @Pattern(regexp = "[A-Za-z ]+", message = "Wrong format name")
+    @Pattern(regexp = "(^$|^[A-Za-z ]+$)", message = "Wrong format name")
     private String customerName;
 
-    private Set<SavingBook> savingBookSet;
-
     public CustomerDto() {
+    }
+
+    public CustomerDto(String customerCode, String customerName) {
+        this.customerCode = customerCode;
+        this.customerName = customerName;
     }
 
     public Integer getCustomerId() {
@@ -46,13 +47,5 @@ public class CustomerDto {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
-    }
-
-    public Set<SavingBook> getSavingBookSet() {
-        return savingBookSet;
-    }
-
-    public void setSavingBookSet(Set<SavingBook> savingBookSet) {
-        this.savingBookSet = savingBookSet;
     }
 }

@@ -11,14 +11,17 @@
 <div>
     <form method="post" action="/edit" th:object="${savingBookDto}">
         <table>
+            <input type="hidden" th:field="*{savingBookId}">
             <input type="hidden" th:field="*{savingBookCode}">
+            <input type="hidden" th:field="*{customer.customerId}">
+
             <input type="hidden" th:field="*{customer.customerCode}">
 
             <tr>
                 <td>Customer Name</td>
                 <td>
                     <input type="text" th:field="*{customer.customerName}"></td>
-                <!--                <td th:if="${#fields.hasErrors('customerName')}" th:errors="*{customer.customerName}"></td>-->
+                <!--                <td th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerDto.customerName}"></td>-->
             </tr>
 
             <tr>

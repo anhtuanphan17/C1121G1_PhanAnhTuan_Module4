@@ -12,6 +12,7 @@
     <form method="post" action="/delete" th:object="${savingBookDto}">
         <table>
             <input type="hidden" th:field="*{savingBookId}">
+            <input type="hidden" th:field="*{customer.customerId}">
             <tr>
                 <td>Saving Book Code:</td>
                 <td th:text="${savingBookDto.savingBookCode}" th:field="*{savingBookCode}"></td>

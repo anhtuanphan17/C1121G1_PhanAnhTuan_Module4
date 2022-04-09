@@ -1,5 +1,6 @@
 package com.saving.saving_book_management.controller;
 
+import com.saving.saving_book_management.dto.CustomerDto;
 import com.saving.saving_book_management.dto.SavingBookDto;
 import com.saving.saving_book_management.model.Customer;
 import com.saving.saving_book_management.model.SavingBook;
@@ -58,10 +59,12 @@ public class SavingBookController {
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
     public String showEditForm(@PathVariable int id,ModelMap modelMap){
         SavingBook savingBook = savingBookService.findById(id);
+
         SavingBookDto savingBookDto = new SavingBookDto();
         BeanUtils.copyProperties(savingBook,savingBookDto);
 
-        Customer customer =  new Customer();
+        CustomerDto customer =  new CustomerDto();
+        customer.setCustomerId(savingBook.getCustomer().getCustomerId());
         customer.setCustomerCode(savingBook.getCustomer().getCustomerCode());
         customer.setCustomerName(savingBook.getCustomer().getCustomerName());
         savingBookDto.setCustomer(customer);
@@ -71,11 +74,12 @@ public class SavingBookController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editInfo(@Valid @ModelAttribute SavingBookDto savingBookDto, ModelMap modelMap){
+    public String editInfo(@Valid @ModelAttribute SavingBookDto savingBookDto, BindingResult bindingResult,ModelMap modelMap){
         SavingBook savingBook = new SavingBook();
         BeanUtils.copyProperties(savingBookDto,savingBook);
 
         Customer customer = new Customer();
+//        customer.setCustomerId(savingBookDto.getCustomer().getCustomerId());
         customer.setCustomerCode(savingBookDto.getCustomer().getCustomerCode());
         customer.setCustomerName(savingBookDto.getCustomer().getCustomerName());
         savingBook.setCustomer(customer);
@@ -85,35 +89,36 @@ public class SavingBookController {
     }
 
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String showDeleteForm(@PathVariable int id, ModelMap modelMap){
-        SavingBook savingBook = savingBookService.findById(id);
-
-        SavingBookDto savingBookDto = new SavingBookDto();
-        BeanUtils.copyProperties(savingBook,savingBookDto);
-
-        Customer customer =  new Customer();
-        customer.setCustomerCode(savingBook.getCustomer().getCustomerCode());
-        customer.setCustomerName(savingBook.getCustomer().getCustomerName());
-        savingBookDto.setCustomer(customer);
-
-        modelMap.addAttribute("savingBookDto",savingBookDto);
-
-    return "saving_book/delete";
-    }
-
-    @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public String deteleForm(@ModelAttribute SavingBookDto savingBookDto){
-        SavingBook savingBook = new SavingBook();
-        BeanUtils.copyProperties(savingBookDto,savingBook);
-
-//        Customer customer = new Customer();
-//        customer.setCustomerCode(savingBookDto.getCustomer().getCustomerCode());
-//        customer.setCustomerName(savingBookDto.getCustomer().getCustomerName());
-//        savingBook.setCustomer(customer);
-
-        savingBookService.deleteById(savingBook.getSavingBookId());
-
-        return "redirect:savingbook";
-    }
+//    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+//    public String showDeleteForm(@PathVariable int id, ModelMap modelMap){
+//        SavingBook savingBook = savingBookService.findById(id);
+//
+//        SavingBookDto savingBookDto = new SavingBookDto();
+//        BeanUtils.copyProperties(savingBook,savingBookDto);
+//
+//        CustomerDto customerDto =  new CustomerDto();
+//        customerDto.setCustomerId(savingBook.getCustomer().getCustomerId());
+//        customerDto.setCustomerCode(savingBook.getCustomer().getCustomerCode());
+//        customerDto.setCustomerName(savingBook.getCustomer().getCustomerName());
+//        savingBookDto.setCustomer(customerDto);
+//
+//        modelMap.addAttribute("savingBookDto",savingBookDto);
+//
+//    return "saving_book/delete";
+//    }
+//
+//    @RequestMapping(value = "delete", method = RequestMethod.POST)
+//    public String deteleForm(@ModelAttribute SavingBookDto savingBookDto){
+//        SavingBook savingBook = new SavingBook();
+//        BeanUtils.copyProperties(savingBookDto,savingBook);
+//
+////        Customer customer = new Customer();
+////        customer.setCustomerCode(savingBookDto.getCustomer().getCustomerCode());
+////        customer.setCustomerName(savingBookDto.getCustomer().getCustomerName());
+////        savingBook.setCustomer(customer);
+//
+//        savingBookService.deleteById(savingBook.getSavingBookId());
+//
+//        return "redirect:savingbook";
+//    }
 }

@@ -1,29 +1,36 @@
 package com.saving.saving_book_management.dto;
 
-import com.saving.saving_book_management.model.Customer;
-import com.saving.saving_book_management.model.SavingBook;
-import org.springframework.cglib.core.Local;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class SavingBookDto implements Validator {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer savingBookId;
-    @Size(min = 4,message = "wrong saving book code")
+
+    @NotEmpty
+    @Pattern(regexp = "^(SB-){1}[0-9]{3,5}$")
     private String savingBookCode;
+
     private String startDay;
+    @NotNull
+    @Min(1)
+//    @Pattern(regexp = "^[0-9]+$")
     private Integer term;
+
+    @Min(value = 30000,message = "deposit amount must higher than 3000")
+    @NotNull
     private Integer amount;
 
     @Valid
-    private Customer customer;
+    private CustomerDto customer;
 
     public SavingBookDto() {
     }
@@ -68,11 +75,11 @@ public class SavingBookDto implements Validator {
         this.amount = amount;
     }
 
-    public Customer getCustomer() {
+    public CustomerDto getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(CustomerDto customer) {
         this.customer = customer;
     }
 
@@ -84,17 +91,35 @@ public class SavingBookDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         SavingBookDto savingBookDto = (SavingBookDto) target;
+        if (savingBookDto.getStartDay().equals("")) {
+            errors.rejectValue("startDay", "empty.startday", "not empty day ");
+        } else {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate now = LocalDate.now();
+            LocalDate startDay = LocalDate.parse(savingBookDto.getStartDay(), formatter);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate now =  LocalDate.now();
-        LocalDate startDay = LocalDate.parse(savingBookDto.getStartDay(),formatter);
+            if (startDay.isBefore(now)) {
+                errors.rejectValue("startDay", "wrong.startday", "Please choose correct start day ");
 
-       if(startDay.isBefore(now)){
-           errors.rejectValue("startDay","wrong.startday","Please choose correct start day ");
+            }
+        }
 
-       }
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate now = LocalDate.now();
+//        LocalDate startDay = LocalDate.parse(savingBookDto.getStartDay(), formatter);
+//
+//        if (startDay.isBefore(now)) {
+//            errors.rejectValue("startDay", "wrong.startday", "Please choose correct start day ");
+//
+//        }
+//    }
+        String term1 = String.valueOf(savingBookDto.getTerm());
+        if(!term1.matches("^[0-9]+$")){
+            errors.rejectValue("term","wrong.term","input wrong term");
+        }
+
+
     }
-
 
 
 }
