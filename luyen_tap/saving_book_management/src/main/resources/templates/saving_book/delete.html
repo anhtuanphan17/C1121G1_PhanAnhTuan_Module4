@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Create Form</h1>
+
+<div>
+    <form method="post" action="/delete" th:object="${savingBookDto}">
+        <table>
+            <input type="hidden" th:field="*{savingBookId}">
+            <tr>
+                <td>Saving Book Code:</td>
+                <td th:text="${savingBookDto.savingBookCode}" th:field="*{savingBookCode}"></td>
+
+            </tr>
+            <tr>
+                <td>Customer Name:</td>
+                <td th:text="${savingBookDto.customer.customerName}" th:field="*{customer.customerName}"></td>
+
+
+            </tr>
+            <tr>
+                <td>Customer Code:</td>
+                <td th:text="${savingBookDto.customer.customerCode}" th:field="*{customer.customerCode}"></td>
+
+            </tr>
+            <tr>
+                <td>Start Day:</td>
+                <td th:text="${savingBookDto.startDay}" th:field="*{startDay}"></td>
+
+            </tr>
+            <tr>
+                <td>Term:</td>
+                <td th:text="${savingBookDto.term}" th:field="*{term}"></td>
+
+            </tr>
+            <tr>
+                <td>Amount:</td>
+                <td th:text="${savingBookDto.amount}" th:field="*{amount}"></td>
+
+            </tr>
+            <tr>
+                <td>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+
+</body>
+</html>

@@ -14,4 +14,8 @@ public interface ISavingBookService {
     void save(SavingBook savingBook);
 
     SavingBook findById(int id);
+
+    void delete(SavingBook savingBook);
+
+    void deleteById(Integer savingBookId);
 }

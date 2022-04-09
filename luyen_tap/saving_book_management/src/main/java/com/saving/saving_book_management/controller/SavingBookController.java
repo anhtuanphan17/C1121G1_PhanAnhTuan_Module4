@@ -39,7 +39,7 @@ public class SavingBookController {
         return "saving_book/create";
     }
 
-    @RequestMapping(value = "/createSavingBook", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createSavingBook(@Valid @ModelAttribute SavingBookDto savingBookDto, BindingResult bindingResult) {
         savingBookDto.validate(savingBookDto, bindingResult);
         if(bindingResult.hasFieldErrors()){
@@ -85,10 +85,35 @@ public class SavingBookController {
     }
 
 
-//    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-//    public String showDeleteForm(@PathVariable int id, ModelMap modelMap){
-//        SavingBook savingBook = savingBookService.findById(id);
-//
-//
-//    }
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String showDeleteForm(@PathVariable int id, ModelMap modelMap){
+        SavingBook savingBook = savingBookService.findById(id);
+
+        SavingBookDto savingBookDto = new SavingBookDto();
+        BeanUtils.copyProperties(savingBook,savingBookDto);
+
+        Customer customer =  new Customer();
+        customer.setCustomerCode(savingBook.getCustomer().getCustomerCode());
+        customer.setCustomerName(savingBook.getCustomer().getCustomerName());
+        savingBookDto.setCustomer(customer);
+
+        modelMap.addAttribute("savingBookDto",savingBookDto);
+
+    return "saving_book/delete";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String deteleForm(@ModelAttribute SavingBookDto savingBookDto){
+        SavingBook savingBook = new SavingBook();
+        BeanUtils.copyProperties(savingBookDto,savingBook);
+
+//        Customer customer = new Customer();
+//        customer.setCustomerCode(savingBookDto.getCustomer().getCustomerCode());
+//        customer.setCustomerName(savingBookDto.getCustomer().getCustomerName());
+//        savingBook.setCustomer(customer);
+
+        savingBookService.deleteById(savingBook.getSavingBookId());
+
+        return "redirect:savingbook";
+    }
 }

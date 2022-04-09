@@ -28,4 +28,14 @@ public class SavingBookService implements ISavingBookService{
     public SavingBook findById(int id) {
         return savingBookRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void delete(SavingBook savingBook) {
+        savingBookRepository.delete(savingBook);
+    }
+
+    @Override
+    public void deleteById(Integer savingBookId) {
+        savingBookRepository.deleteById(savingBookId);
+    }
 }
