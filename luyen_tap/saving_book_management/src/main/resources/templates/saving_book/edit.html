@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Create Form</h1>
+
+<div>
+    <form method="post" action="/edit" th:object="${savingBookDto}">
+        <table>
+            <input type="hidden" th:field="*{savingBookCode}">
+            <input type="hidden" th:field="*{customer.customerCode}">
+
+            <tr>
+                <td>Customer Name</td>
+                <td>
+                    <input type="text" th:field="*{customer.customerName}"></td>
+                <!--                <td th:if="${#fields.hasErrors('customerName')}" th:errors="*{customer.customerName}"></td>-->
+            </tr>
+
+            <tr>
+                <td>Start Day</td>
+                <td>
+                    <input type="date" th:field="*{startDay}">
+                </td>
+                <td th:if="${#fields.hasErrors('startDay')}" th:errors="*{startDay}"></td>
+            </tr>
+            <tr>
+                <td>Term</td>
+                <td>
+                    <input type="text" th:field="*{term}">
+                </td>
+                <td th:if="${#fields.hasErrors('term')}" th:errors="*{term}"></td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td>
+                    <input type="text" th:field="*{amount}">
+                </td>
+                <td th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></td>
+            </tr>
+            <tr>
+                <td>
+                    <button>Edit</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+
+</body>
+</html>
