@@ -39,21 +39,24 @@ public class SachController {
 
 
     @PostMapping("/muon")
-    public String MuonSach(@ModelAttribute Sach sach, RedirectAttributes redirectAttributes) {
+    public String MuonSach(@ModelAttribute Sach sach, RedirectAttributes redirectAttributes) throws Exception {
         if (sach.getSoLuong() <= 0){
             redirectAttributes.addFlashAttribute("message", "Mượn không thành công vì đã hết sách!");
             return "redirect:/list";
         }
-
-        TheMuonSach theMuonSach = new TheMuonSach();
-        theMuonSach.setMaMuonSach((int) (Math.random() * 1000));
-        theMuonSach.setTrangThai(true);
-        theMuonSach.setSach(sach);
-        theMuonSachService.save(theMuonSach);
-        sach.setSoLuong(sach.getSoLuong() - 1);
-        sachService.save(sach);
-        redirectAttributes.addFlashAttribute("success", "Mượn thành công!");
-        return "redirect:list";
+        if(sach.getSoLuong()>0) {
+            TheMuonSach theMuonSach = new TheMuonSach();
+            theMuonSach.setMaMuonSach((int) (Math.random() * 1000));
+            theMuonSach.setTrangThai(true);
+            theMuonSach.setSach(sach);
+            theMuonSachService.save(theMuonSach);
+            sach.setSoLuong(sach.getSoLuong() - 1);
+            sachService.save(sach);
+            redirectAttributes.addFlashAttribute("success", "Mượn thành công!");
+            return "redirect:list";
+        }else{
+            throw new Exception("Error");
+        }
     }
 
     @RequestMapping(value = "/tra/{id}", method = RequestMethod.GET)
@@ -84,6 +87,11 @@ public class SachController {
             redirectAttributes.addFlashAttribute("message","Ma muon sach khong ton tai");
             return "redirect:list";
         }
+    }
+
+    @ExceptionHandler
+    public String showErrorPage(){
+        return "sach/error";
     }
 }
 
