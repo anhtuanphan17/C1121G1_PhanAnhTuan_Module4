@@ -46,6 +46,18 @@ public class Cart {
         }
     }
 
+    public void decreaseProduct(Product product){
+
+            Map.Entry<Product, Integer> itemEntry = selectItemInCart(product);
+            if(itemEntry.getValue()==0){
+                products.replace(itemEntry.getKey(),0);
+            }else {
+                Integer newQuantity = itemEntry.getValue() - 1;
+                products.replace(itemEntry.getKey(),newQuantity);
+            }
+
+    }
+
     public Integer countProductQuantity(){
         Integer productQuantity = 0;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
