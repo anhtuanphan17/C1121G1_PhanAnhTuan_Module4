@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="66a083e1-cfd2-4911-b2cf-8d3da09aab8a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/java/com/saving/saving_book_management/controller/SavingBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/java/com/saving/saving_book_management/controller/SavingBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/java/com/saving/saving_book_management/repository/ISavingBookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/java/com/saving/saving_book_management/repository/ISavingBookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/java/com/saving/saving_book_management/service/ISavingBookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/java/com/saving/saving_book_management/service/ISavingBookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/java/com/saving/saving_book_management/service/SavingBookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/java/com/saving/saving_book_management/service/SavingBookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/resources/templates/saving_book/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../luyen_tap/saving_book_management/src/main/resources/templates/saving_book/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss4_thymeleaf/excercise/product_management/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss4_thymeleaf/excercise/product_management/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss4_thymeleaf/practice/customer_data_management_by_thymeleaf/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss4_thymeleaf/practice/customer_data_management_by_thymeleaf/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/src/main/java/com/picture_of_day/service/impl/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss5_database_orm/excercise/picture_of_day/src/main/java/com/picture_of_day/service/impl/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/model/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/model/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/repository/IBlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/repository/IBlogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/repository/ICategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/repository/ICategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/service/IBlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/service/IBlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/service/ICategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/service/ICategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/service/impl/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/service/impl/BlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/service/impl/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/java/blog/create_blog/blog_app/service/impl/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/category/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/category/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/category/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/category/delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/category/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/category/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/excercise/create_blog/src/main/resources/templates/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6_jpa/practice/customer_management_by_jpa/src/main/java/com/codegym/cms/model/Province.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6_jpa/practice/customer_management_by_jpa/src/main/java/com/codegym/cms/model/Province.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss8_validation/excercise/validate_user_form_ss8/src/main/java/com/validate_user_form_ss8/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss8_validation/excercise/validate_user_form_ss8/src/main/java/com/validate_user_form_ss8/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss8_validation/excercise/validate_user_form_ss8/src/main/resources/templates/input-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss8_validation/excercise/validate_user_form_ss8/src/main/resources/templates/input-form.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectId" id="27kZwtE0X6jhZ4d8kcARgk6Fo4f" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="CustomerManagementWithWebserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="customer_management_with_webservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.customer_management_with_webservice.CustomerManagementWithWebserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="66a083e1-cfd2-4911-b2cf-8d3da09aab8a" name="Changes" comment="" />
+      <created>1649866290628</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649866290628</updated>
+      <workItem from="1649866293725" duration="153000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

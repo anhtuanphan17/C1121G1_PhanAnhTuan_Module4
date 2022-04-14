@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <p th:insert="layout::bootrap-link"></p>
+</head>
+<body>
+
+<div th:replace="/layout :: navbar">
+
+</div>
+
+<div>
+    <h1 style="text-align: center">Category List</h1>
+</div>
+
+<div class="container">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h2><a th:href="@{/create-category}">Create new category</a></h2>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Category Name</th>
+                <th>Delete</th>
+
+            </tr>
+
+            <tr th:each="category, loop:${categoryList}">
+                <td th:text="${loop.count}"></td>
+                <td th:text="${category.getCategoryName()}"></td>
+
+                <td><a th:href="@{/delete-category/{id}(id=${category.getCategoryId()})}">Delete</a></td>
+
+            </tr>
+
+        </table>
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>
+
+</body>
+</html>

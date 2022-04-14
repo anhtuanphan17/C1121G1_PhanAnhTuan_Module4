@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="/layout::bootrap-link"></div>
+</head>
+<body>
+<div th:replace="/layout :: navbar"></div>
+<h1>Create Form</h1>
+
+<div>
+        <form method="post" th:action="@{/create}" th:object="${blogs}">
+            <table>
+                <tr>
+                    <td>Title</td>
+                    <td>
+                        <input type="text" th:field="*{title}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Author</td>
+                    <td>
+                        <input type="text" th:field="*{author}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Content</td>
+                    <td>
+                        <input type="text" th:field="*{content}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>
+                        <input type="text" th:field="*{description}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Create Day</td>
+                    <td>
+                        <input type="text" th:field="*{createDay}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>
+                        <select th:field="*{category}">
+                            <option th:each="category, loop :${categoryList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+                        </select>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <button>Create</button>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+</div>
+
+</body>
+</html>
