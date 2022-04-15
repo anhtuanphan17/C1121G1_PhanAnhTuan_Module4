@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<!--nabar-->
+<div>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">Blog List</a>
+            <a class="navbar-brand" href="/category-list">Category List</a>
+
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchWord"
+                   name="searchWord">
+            <button class="btn btn-outline-success" id="btnSearch">Search</button>
+
+        </div>
+    </nav>
+</div>
+
+<div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Content</th>
+            <th>Description</th>
+            <th>Create Day</th>
+            <th>Category</th>
+        </tr>
+        </thead>
+        <tbody id="blogbody">
+
+        </tbody>
+    </table>
+</div>
+
+<button id="loadMoreButton">Load more</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/mdb.min.js"></script>
+
+<script>
+
+
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "GET", //GET, DELETE, PUT...
+        // url: "http://localhost:8080/home?searchWord=" + searchWordValue,
+        url: "http://localhost:8080/home",
+        success: function (resultSuccess) {
+            let blogList = resultSuccess.content;
+            let outHTML = "";
+            for (let i = 0; i < blogList.length; i++) {
+                outHTML += `
+                    <tr>
+                    <td>${blogList[i].id}</td>
+                    <td>${blogList[i].title}</td>
+                    <td>${blogList[i].author}</td>
+                    <td>${blogList[i].content}</td>
+                    <td>${blogList[i].description}</td>
+                    <td>${blogList[i].createDay}</td>
+                    <td>${blogList[i].category.categoryName}</td>
+                    </tr>
+                `;
+            }
+            $("#blogbody").html(outHTML);
+
+        },
+        error: function (resultError) {
+            alert("he thong dang bao tri");
+        }
+    });
+
+
+    $("#btnSearch").click(function () {
+        let searchWordValue = $("#searchWord").val();
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/home?searchWord=" + searchWordValue,
+            // url: "http://localhost:8080/search?searchWord=" + searchWordValue,
+            // url: "http://localhost:8080/home",
+            success: function (resultSuccess) {
+                let blogList = resultSuccess.content;
+                let outHTML = "";
+                for (let i = 0; i < blogList.length; i++) {
+                    outHTML += `
+                    <tr>
+                    <td>${blogList[i].id}</td>
+                    <td>${blogList[i].title}</td>
+                    <td>${blogList[i].author}</td>
+                    <td>${blogList[i].content}</td>
+                    <td>${blogList[i].description}</td>
+                    <td>${blogList[i].createDay}</td>
+                    </tr>
+                `;
+                }
+                $("#blogbody").html(outHTML);
+
+            },
+            error: function (resultError) {
+                alert("he thong dang bao tri");
+            }
+        });
+    });
+
+
+    let countLoad = 1;
+    let outHTML = "";
+    let count = 0;
+
+    $("#loadMoreButton").click(function () {
+
+        let searchWordValue = $("#searchWord").val();
+
+
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/home?searchWord=" + searchWordValue,
+            success: function (resultSuccess) {
+
+                let blogList = resultSuccess.content;
+
+                for (let i = count; i < (countLoad * 2) && i < blogList.length; i++) {
+                    outHTML += `
+                    <tr>
+                    <td>${blogList[i].id}</td>
+                    <td>${blogList[i].title}</td>
+                    <td>${blogList[i].author}</td>
+                    <td>${blogList[i].content}</td>
+                    <td>${blogList[i].description}</td>
+                    <td>${blogList[i].createDay}</td>
+                    <td>${blogList[i].category.categoryName}</td>
+                    </tr>
+                    `
+                }
+                count = countLoad * 2;
+                countLoad++;
+
+                console.log(outHTML);
+                $("#blogbody").html(outHTML);
+            },
+            error: function (resultError) {
+                alert("He thong dang bao tri");
+            }
+        });
+
+    })
+</script>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+</html>
