@@ -25,7 +25,7 @@
                 type: "POST",
                 data: JSON.stringify(newSmartphone),
                 //tên API
-                url: "/smartphones",
+                url: "http://localhost:8080/smartphones",
                 //xử lý khi thành công
                 success: successHandler
 
@@ -38,7 +38,7 @@
             $.ajax({
                 type: "GET",
                 //tên API
-                url: "/smartphones",
+                url: "http://localhost:8080/smartphones",
                 //xử lý khi thành công
                 success: function (data) {
                     // hien thi danh sach o day
@@ -71,7 +71,7 @@
                 $.ajax({
                     type: "DELETE",
                     //tên API
-                    url: `/smartphones/${smartphoneId}`,
+                    url: `http://localhost:8080/smartphones/${id}`,
                     //xử lý khi thành công
                     success: function (data) {
                         a.parent().parent().remove();
@@ -107,21 +107,54 @@
 </form>
 
 <h1>Smartphone List</h1>
-<table id="smartphoneList">
-    <tr>
-        <td>Producer</td>
-        <td>Model</td>
-        <td>Price</td>
-        <td>Delete</td>
-    </tr>
-    <th:block th:each="smartphone: ${smartphones}">
+<div>
+    <table id="smartphoneList">
+        <thead>
         <tr>
-            <td th:text="${smartphone.producer}"></td>
-            <td th:text="${smartphone.model}"></td>
-            <td th:text="${smartphone.price}"></td>
-            <td><a class="deleteSmartphone" th:href="${smartphone.getId()}">Delete</a></td>
+            <td>Producer</td>
+            <td>Model</td>
+            <td>Price</td>
+            <td>Update</td>
         </tr>
-    </th:block>
-</table>
+        </thead>
+        <tbody id="smartphone-body">
+
+
+        </tbody>
+    </table>
+</div>
+<script>
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "GET", //GET, DELETE, PUT...
+        url: "http://localhost:8080/smartphones",
+        success: function (resultSuccess) {
+            let smartphonesList = resultSuccess;
+            let outHTML = "";
+            for (let i = 0; i < smartphonesList.length; i++) {
+                outHTML += `
+              <tr>
+              <td >${smartphonesList[i].producer}</td>
+              <td >${smartphonesList[i].model}</td>
+              <td >${smartphonesList[i].price}</td>
+<!--              <td><a href="/update.html?id=${smartphonesList[i].id}">Update</a></td>-->
+              <td><a href="update.html?id=${smartphonesList[i].id}">Update</a></td>
+              </tr>
+                `;
+            }
+
+            $("#smartphone-body").html(outHTML);
+
+        },
+        error: function (resultError) {
+            alert("he thong dang bao tri");
+        }
+    });
+
+</script>
+
 </body>
 </html>

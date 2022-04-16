@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/smartphones")
 @CrossOrigin
@@ -20,15 +22,30 @@ public class SmartphoneController {
     public ResponseEntity<Smartphone> createSmartphone(@RequestBody Smartphone smartphone) {
         return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.CREATED);
     }
-    @GetMapping("/list")
-    public ModelAndView getAllSmartphonePage() {
-        ModelAndView modelAndView = new ModelAndView("/phones/list");
-        modelAndView.addObject("smartphones", smartphoneService.findAll());
-        return modelAndView;
-    }
 
     @GetMapping
     public ResponseEntity<Iterable<Smartphone>> allPhones() {
         return new ResponseEntity<>(smartphoneService.findAll(), HttpStatus.OK);
     }
+
+    @GetMapping("/view")
+    public ResponseEntity<Smartphone> showEditForm(@RequestParam Long id){
+        Optional<Smartphone> smartphoneOptional = smartphoneService.findById(id);
+        if (!smartphoneOptional.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(smartphoneOptional.get(),HttpStatus.OK);
+    }
+
+    @PatchMapping("update")
+    public ResponseEntity<Smartphone> updateSmartPhone(@RequestBody Smartphone smartphone,@RequestParam Long id){
+        Optional<Smartphone> smartphoneOptional = smartphoneService.findById(id);
+        if (!smartphoneOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        smartphone.setId(id);
+        return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.OK);
+
+    }
+
 }
