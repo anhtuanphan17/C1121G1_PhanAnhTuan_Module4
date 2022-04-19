@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="/layout::bootrap-link"></div>
+</head>
+<body>
+<div th:replace="/layout ::navbar"></div>
+<p>
+    <a th:href="@{/home}">
+        Back to blog list
+    </a>
+</p>
+<table id="form">
+
+    <tr>
+        <th>Title </th>
+        <th>Author: </th>
+        <th>Content: </th>
+        <th>Description: </th>
+    </tr>
+
+    <tr>
+        <td th:text="${blogs.title}"></td>
+        <td th:text="${blogs.author}"></td>
+        <td th:text="${blogs.content}"></td>
+        <td th:text="${blogs.description}"></td>
+    </tr>
+
+</table>
+</body>
+</html>
