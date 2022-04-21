@@ -2,9 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css"
+            rel="stylesheet"
+    />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
-$END$
+
+
+<div class="container mt-4">
+    <div class="row w-50 mx-auto">
+        <div class="col-lg-12">
+            <h2>Delete smartphone</h2>
+
+            <div class="form-outline mb-4">
+                <input type="text" id="id" class="form-control"/>
+                <label class="form-label" for="id"></label>
+            </div>
+
+            <div class="form-outline mb-4">
+                <input readonly type="text" id="producer" class="form-control"/>
+                <label class="form-label" for="producer"></label>
+            </div>
+            <div class="form-outline mb-4">
+                <input readonly type="text" id="model" class="form-control"/>
+                <label class="form-label" for="model"></label>
+            </div>
+            <div class="form-outline mb-4">
+                <input readonly type="text" id="price" class="form-control"/>
+                <label class="form-label" for="price"></label>
+            </div>
+            <button id="btnDelete" type="button" class="btn btn-primary btn-block">
+                Delete
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('document').ready(function () {
+
+        // var id = window.location.search.substring(window.location.search.length - 1);
+        const myArray = window.location.search.split("=");
+        let id = myArray[1];
+
+        console.log(myArray);
+        console.log(id);
+
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/smartphones/delete?id=" + id,
+            success: function (resultSuccess) {
+                $('#producer').val(resultSuccess.producer);
+                $('#model').val(resultSuccess.model);
+                $('#price').val(resultSuccess.price);
+            },
+            error: function (resultError) {
+                alert("He thong dang bao tri");
+            }
+        });
+
+
+    });
+    $('#btnDelete').click(function deleteSmartPhone() {
+        // var id = window.location.search.substring(window.location.search.length - 1);
+
+        alert(id)
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "DELETE", //GET, DELETE, PUT...
+            url: "http://localhost:8080/smartphones/delete?id=" + id,
+            // data: JSON.stringify(smartPhoneObj),
+            success: function (resultSuccess) {
+                window.location.replace("list.html");
+            },
+            error: function (resultError) {
+                alert("He thong dang bao tri");
+            }
+        });
+        //chặn sự kiện mặc định của thẻ
+        event.preventDefault();
+
+    });
+
+
+
+
+</script>
+
 </body>
 </html>

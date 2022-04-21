@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Create Form</h1>
+
+<!--private Integer customerId;-->
+<!--private String customerCode;-->
+<!--private String customerName;-->
+<!--private String customerBirthday;-->
+<!--private Integer customerGender;-->
+<!--private String customerIdCard;-->
+<!--private String customerPhone;-->
+<!--private String customerEmail;-->
+<!--private String customerAddress;-->
+
+<!--private CustomerType customerType;-->
+
+<form  method="post" action="/create" th:object="${customerDto}">
+    <div class="form-group">
+        <label>Customer Code</label>
+        <input type="text" class="form-control" th:field="*{customerCode}">
+        <div th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></div>
+    </div>
+    <div class="form-group">
+        <label>Customer Code</label>
+        <input type="text" class="form-control" th:field="*{customerCode}">
+    </div>
+<!--    &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div>
+
+
+    <form method="post" action="/create" th:object="${customerDto}">
+
+        <table>
+            <tr>
+                <td>Customer Code</td>
+                <td>
+                    <input type="text" th:field="*{customerCode}">
+                </td>
+                <td th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></td>
+            </tr>
+            <tr>
+                <td>Customer Name</td>
+                <td>
+                    <input type="text" th:field="*{customerName}"></td>
+                <td  th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></td>
+
+            </tr>
+            <tr>
+                <td>Customer Birthday</td>
+                <td>
+                    <input type="text" th:field="*{customerBirthday}"></td>
+                <td  th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"></td>
+            </tr>
+            <tr>
+                <td>customer Gender</td>
+                <td>
+                    <input type="date" th:field="*{customerGender}">
+                </td>
+                <td th:if="${#fields.hasErrors('customerGender')}" th:errors="*{customerGender}"></td>
+            </tr>
+            <tr>
+                <td>Customer IdCard</td>
+                <td>
+                    <input type="text" th:field="*{customerIdCard}">
+                </td>
+                <td th:if="${#fields.hasErrors('customerIdCard')}" th:errors="*{customerIdCard}"></td>
+            </tr>
+            <tr>
+                <td>Customer Phone</td>
+                <td>
+                    <input type="text" th:field="*{customerPhone}">
+                </td>
+                <td th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}"></td>
+            </tr>
+            <tr>
+                <td>Customer Email</td>
+                <td>
+                    <input type="text" th:field="*{customerEmail}">
+                </td>
+                <td th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"></td>
+            </tr>
+            <tr>
+                <td>Customer Address</td>
+                <td>
+                    <input type="text" th:field="*{customerAddress}">
+                </td>
+                <td th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"></td>
+            </tr>
+            <tr>
+                <td>Customer Type</td>
+                <td>
+                   <select th:each="cutomerType :${customerTypeList}">
+                       <option th:value="${}" th:text="${customerType}"></option>
+                   </select>
+                </td>
+                <td th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"></td>
+            </tr>
+            <tr>
+                <td>
+                    <button>Create</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+
+</body>
+</html>

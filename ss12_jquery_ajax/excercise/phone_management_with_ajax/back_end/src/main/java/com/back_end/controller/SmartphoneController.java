@@ -48,4 +48,33 @@ public class SmartphoneController {
 
     }
 
+
+//    @GetMapping("/create")
+//    public ResponseEntity<Smartphone> showCreateForm(){
+//    Smartphone smartphone = new Smartphone();
+//
+//        return new ResponseEntity<>(Smartphone,HttpStatus.OK);
+//    }
+
+
+    @GetMapping("/delete")
+    public ResponseEntity<Smartphone> showDeleteForm(@RequestParam Long id){
+        Optional<Smartphone> smartphoneOptional = smartphoneService.findById(id);
+        if(!smartphoneOptional.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(smartphoneOptional.get(),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteSmartPhone(@RequestParam Long id){
+        Optional<Smartphone> smartphoneOptional = smartphoneService.findById(id);
+        if(!smartphoneOptional.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        smartphoneService.remove(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
 }

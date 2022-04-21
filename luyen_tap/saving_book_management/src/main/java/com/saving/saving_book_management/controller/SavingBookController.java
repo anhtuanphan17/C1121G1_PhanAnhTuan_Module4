@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,7 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -28,21 +28,32 @@ public class SavingBookController {
     @Autowired
     private ICustomerService customerService;
 
-    //    @RequestMapping(value = "/savingbook", method = RequestMethod.GET)
-//    public String showListSavingBook(ModelMap modelMap) {
-//        List<SavingBook> savingBookList = savingBookService.findAll();
-//        modelMap.addAttribute("savingBookList", savingBookList);
+    @RequestMapping(value = "/savingbook", method = RequestMethod.GET)
+    public String showListSavingBook(ModelMap modelMap, Pageable pageable) {
+        Page<SavingBook> savingBookList = savingBookService.findAll(pageable);
+        modelMap.addAttribute("savingBookList", savingBookList);
+        return "saving_book/list";
+    }
+
+//    @RequestMapping(value = {"","/savingbook"}, method = RequestMethod.GET)
+//    public String showListSavingBook(ModelMap modelMap, @PageableDefault(value = 2) Pageable pageable, @RequestParam Optional<String> searchWord) {
+//        String keyWordValue = searchWord.orElse("");
+//        Page<SavingBook> savingBookList = savingBookService.findAllPaging(keyWordValue,pageable);
+//        modelMap.addAttribute("savingBookList",savingBookList);
+//        modelMap.addAttribute("keyWordValue",keyWordValue);
+//
 //        return "saving_book/list";
 //    }
-    @RequestMapping(value = {"","/savingbook"}, method = RequestMethod.GET)
-    public String showListSavingBook(ModelMap modelMap, @PageableDefault(value = 2) Pageable pageable, @RequestParam Optional<String> searchWord) {
-        String keyWordValue = searchWord.orElse("");
-        Page<SavingBook> savingBookList = savingBookService.findAllPaging(keyWordValue,pageable);
-        modelMap.addAttribute("savingBookList",savingBookList);
-        modelMap.addAttribute("keyWordValue",keyWordValue);
 
-
-
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search( @RequestParam Optional<String> customerName,
+                         @RequestParam Optional<String> depositDate,
+                         @RequestParam Optional<String> maturiryDate, @PageableDefault(value = 2) Pageable pageable,ModelMap modelMap) {
+        String customerNameValue = customerName.orElse("");
+        String depositDatevalue = depositDate.orElse("");
+        String maturityDateValue = maturiryDate.orElse("");
+        Page<SavingBook> savingBookList = savingBookService.findAllByCustomerNameAndStartDay(customerNameValue, depositDatevalue, maturityDateValue, pageable);
+        modelMap.addAttribute("savingBookList", savingBookList);
         return "saving_book/list";
     }
 
@@ -87,13 +98,14 @@ public class SavingBookController {
         return "saving_book/edit";
     }
 
+
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editInfo(@Valid @ModelAttribute SavingBookDto savingBookDto, BindingResult bindingResult, ModelMap modelMap) {
         SavingBook savingBook = new SavingBook();
         BeanUtils.copyProperties(savingBookDto, savingBook);
 
         Customer customer = new Customer();
-//        customer.setCustomerId(savingBookDto.getCustomer().getCustomerId());
+        customer.setCustomerId(savingBookDto.getCustomer().getCustomerId());
         customer.setCustomerCode(savingBookDto.getCustomer().getCustomerCode());
         customer.setCustomerName(savingBookDto.getCustomer().getCustomerName());
         savingBook.setCustomer(customer);

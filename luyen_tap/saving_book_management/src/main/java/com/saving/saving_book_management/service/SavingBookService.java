@@ -11,15 +11,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SavingBookService implements ISavingBookService{
+public class SavingBookService implements ISavingBookService {
 
     @Autowired
     ISavingBookRepository savingBookRepository;
-    private Integer savingBookId;
 
     @Override
-    public List<SavingBook> findAll() {
-        return savingBookRepository.findAll();
+    public Page<SavingBook> findAll(Pageable pageable) {
+        return savingBookRepository.findAll(pageable);
     }
 
     @Override
@@ -39,14 +38,26 @@ public class SavingBookService implements ISavingBookService{
 
     @Override
     public void deleteById(Integer savingBookId) {
-        this.savingBookId = savingBookId;
         savingBookRepository.deleteById(savingBookId);
     }
 
     @Override
     public Page<SavingBook> findAllPaging(String keyWordValue, Pageable pageable) {
-        return this.savingBookRepository.findAllByCustomer_CustomerNameContainingOrderByStartDay(keyWordValue,pageable);
+        return this.savingBookRepository.findAllByCustomer_CustomerNameContainingOrderByStartDay(keyWordValue, pageable);
     }
+
+    @Override
+    public Page<SavingBook> findAllByCustomerNameAndStartDay(String customerNameValue, String depositDatevalue, String maturityDateValue, Pageable pageable) {
+        if (customerNameValue.equals("") & depositDatevalue.equals("") & maturityDateValue.equals("")) {
+        return findAll(pageable);
+        }
+        if(!customerNameValue.equals("")&depositDatevalue.equals("")&maturityDateValue.equals("")){
+            return savingBookRepository.findAllByCustomerNameAndDepositDateAndMaturiryDate(customerNameValue,depositDatevalue,maturityDateValue,pageable);
+        }
+        return null;
+    }
+
+
 
 
 }

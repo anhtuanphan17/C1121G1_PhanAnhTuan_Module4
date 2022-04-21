@@ -32,9 +32,23 @@
                 </td>
             </tr>
             <tr>
+                <td>Create Day</td>
+                <td>
+                    <input type="date" th:field="*{createDay}">
+                </td>
+            </tr>
+            <tr>
                 <td>Description</td>
                 <td>
                     <input type="text" th:field="*{description}">
+                </td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td>
+                    <select th:field="*{category}">
+                        <option th:each="category, loop :${categoryList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+                    </select>
                 </td>
             </tr>
 

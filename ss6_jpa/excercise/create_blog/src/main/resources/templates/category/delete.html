@@ -8,18 +8,18 @@
 <h1>Delete province</h1>
 <h2>Are you sure?</h2>
 <p>
-    <a href="/provinces">Province list</a>
+    <a href="/category-list">category list</a>
 </p>
-<form th:action="@{/delete-province}" th:object="${province}" method="post">
-    <input th:type="hidden" name="id" th:field="*{id}">
+<form th:action="@{/delete-category}" th:object="${category}" method="post">
+    <input th:type="hidden" name="id" th:field="*{categoryId}">
     <table>
         <tr>
             <td>Name:</td>
-            <td th:text="${province.name}"></td>
+            <td th:text="${category.categoryName}"></td>
         </tr>
         <tr>
-            <td></td>
-            <td><input type="submit" value="Delete province"></td>
+
+            <td><input type="submit" value="Delete"></td>
         </tr>
     </table>
 </form>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h3 th:href="@{/customer/create}">Add new customer</h3>
+
+<table class="table table-striped">
+    <tr>
+        <th>No.</th>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Date Of Birth</th>
+        <th>Gender</th>
+        <th>IdCard</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Customer Type </th>
+    </tr>
+
+    <tr th:each="customer, loop:${customerList}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${customer.customerId}"></td>
+        <td th:text="${customer.customerName}"></td>
+        <td th:text="${customer.customerBirthday}"></td>
+        <td th:text="${customer.customerGender}"></td>
+        <td th:text="${customer.customerIdCard}"></td>
+        <td th:text="${customer.customerPhone}"></td>
+        <td th:text="${customer.customerEmail}"></td>
+        <td th:text="${customer.customerAddress}"></td>
+        <td th:text="${customer.customerType.customerTypeName}"></td>
+        <td><a th:href="@{/edit/{id}/(id=${customer.customerId})}"> Edit</a></td>
+        <td><a th:href="@{/delete/{id}/(id=${customer.customerId})}">Delete</a></td>
+        <td><a th:href="@{/view/{id}/(id=${customer.customerId})}">View</a></td>
+<!--        <td><a th:href="@{/view(id=${customer.customerId})}">View</a></td>-->
+
+    </tr>
+</table>
+
+<a th:if="${customerList.hasPrevious()}"
+   th:href="@{/customer/list(page=${customerList.number - 1},searchWord=${searchWordValue})} ">Previous</a>
+<span th:text="${customerList.number+1}"></span>/<span th:text="${customerList.totalPages}"></span>
+
+<a th:if="${customerList.hasNext()}"
+   th:href="@{/customer/list(page=${customerList.number + 1},searchWord=${searchWordValue})} ">Next</a>
+
+</body>
+</html>

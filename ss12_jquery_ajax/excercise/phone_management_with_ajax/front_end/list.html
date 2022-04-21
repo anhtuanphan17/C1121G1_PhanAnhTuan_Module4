@@ -46,7 +46,8 @@
                         '        <td>Producer</td>\n' +
                         '        <td>Model</td>\n' +
                         '        <td>Price</td>\n' +
-                        '        <td>Delete</td>\n' +
+                        '        <td>Update</td>\n' +
+                        '        <td></td>\n' +
                         '    </tr>';
                     for (let i = 0; i < data.length; i++) {
                         content += getSmartphone(data[i]);
@@ -140,12 +141,11 @@
               <td >${smartphonesList[i].producer}</td>
               <td >${smartphonesList[i].model}</td>
               <td >${smartphonesList[i].price}</td>
-<!--              <td><a href="/update.html?id=${smartphonesList[i].id}">Update</a></td>-->
               <td><a href="update.html?id=${smartphonesList[i].id}">Update</a></td>
+                <td><a href="delete.html?id=${smartphonesList[i].id}">Delete</a></td>
               </tr>
                 `;
             }
-
             $("#smartphone-body").html(outHTML);
 
         },

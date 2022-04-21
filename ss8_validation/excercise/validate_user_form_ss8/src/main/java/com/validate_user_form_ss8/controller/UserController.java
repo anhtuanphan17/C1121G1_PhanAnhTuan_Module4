@@ -16,30 +16,27 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
+
     @Autowired
     IUserService userService;
 
     @GetMapping("/user")
-    public String showForm(ModelMap modelMap){
-        modelMap.addAttribute("userDto",new UserDto());
+    public String showForm(ModelMap modelMap) {
+        modelMap.addAttribute("userDto", new UserDto());
         return "input-form";
     }
 
     @PostMapping("/validateUser")
-    public String validateUser(@Valid @ModelAttribute UserDto userDto,
-                               BindingResult bindingResult,
-                               ModelMap modelMap){
+    public String validateUser(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult, ModelMap modelMap) {
 
-        userDto.validate(userDto,bindingResult);
-
-        if(bindingResult.hasFieldErrors()){
+        userDto.validate(userDto, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
             return "input-form";
         }
         User user = new User();
-        BeanUtils.copyProperties(userDto,user);
+        BeanUtils.copyProperties(userDto, user);
         userService.save(user);
-        modelMap.addAttribute("userList",this.userService.findAll());
-
+        modelMap.addAttribute("userList", this.userService.findAll());
         return "result";
     }
 

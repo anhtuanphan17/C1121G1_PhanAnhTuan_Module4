@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface ISavingBookService {
 
-    List<SavingBook> findAll();
+    Page<SavingBook> findAll(Pageable pageable);
 
     void save(SavingBook savingBook);
 
@@ -23,4 +23,6 @@ public interface ISavingBookService {
 
 
     Page<SavingBook> findAllPaging(String keyWordValue, Pageable pageable);
+
+    Page<SavingBook> findAllByCustomerNameAndStartDay(String customerNameValue, String depositDatevalue, String maturityDateValue, Pageable pageable);
 }

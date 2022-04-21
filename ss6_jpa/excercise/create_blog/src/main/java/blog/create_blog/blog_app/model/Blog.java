@@ -14,6 +14,11 @@ public class Blog {
     private String author;
     private String content;
     private String description;
+    private String createDay;
+
+    @ManyToOne()
+    @JoinColumn(name = "category_id",referencedColumnName = "categoryId")
+    private Category category;
 
     public Blog() {
     }
@@ -56,5 +61,21 @@ public class Blog {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCreateDay() {
+        return createDay;
+    }
+
+    public void setCreateDay(String createDay) {
+        this.createDay = createDay;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

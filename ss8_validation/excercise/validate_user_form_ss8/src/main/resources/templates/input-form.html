@@ -3,6 +3,7 @@
 <head>
     <title>Form</title>
 </head>
+
 <body>
 <form th:object="${userDto}" th:action="@{/validateUser}" method="post">
     <table>
@@ -14,7 +15,7 @@
         <tr>
             <td>Last Name</td>
             <td><input type="text" th:field="*{lastName}"></td>
-            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</td>
+            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></td>
         </tr>
         <tr>
             <td>Phone Number</td>

@@ -23,7 +23,7 @@ public class CommentService implements ICommentService {
 
     @Override
     public List<Comment> findAllComment() {
-        TypedQuery typedQuery = BaseRepository.entityManager.createQuery("select c from comment as c", Comment.class);
+        TypedQuery<Comment> typedQuery = BaseRepository.entityManager.createQuery("select c from comment as c", Comment.class);
         return typedQuery.getResultList();
     }
 }

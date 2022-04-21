@@ -90,8 +90,7 @@
             },
             type: "GET", //GET, DELETE, PUT...
             url: "http://localhost:8080/home?searchWord=" + searchWordValue,
-            // url: "http://localhost:8080/search?searchWord=" + searchWordValue,
-            // url: "http://localhost:8080/home",
+
             success: function (resultSuccess) {
                 let blogList = resultSuccess.content;
                 let outHTML = "";
@@ -117,27 +116,23 @@
     });
 
 
-    let countLoad = 1;
-    let outHTML = "";
-    let count = 0;
+    // load more
+    let page =1;
+        $("#loadMoreButton").click(function () {
 
-    $("#loadMoreButton").click(function () {
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "GET", //GET, DELETE, PUT...
+                url: "http://localhost:8080/home?page=" + page++,
+                success: function (resultSuccess) {
+                    let blogList = resultSuccess.content;
+                    let outHTML = "";
 
-        let searchWordValue = $("#searchWord").val();
-
-        $.ajax({
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            type: "GET", //GET, DELETE, PUT...
-            url: "http://localhost:8080/home?searchWord=" + searchWordValue,
-            success: function (resultSuccess) {
-
-                let blogList = resultSuccess.content;
-
-                for (let i = count; i < (countLoad * 2) && i < blogList.length; i++) {
-                    outHTML += `
+                    for (let i = 0;i < blogList.length; i++) {
+                        outHTML += `
                     <tr>
                     <td>${blogList[i].id}</td>
                     <td>${blogList[i].title}</td>
@@ -148,19 +143,20 @@
                     <td>${blogList[i].category.categoryName}</td>
                     </tr>
                     `
-                }
-                count = countLoad * 2;
-                countLoad++;
+                    }
 
-                console.log(outHTML);
-                $("#blogbody").html(outHTML);
-            },
-            error: function (resultError) {
-                alert("He thong dang bao tri");
-            }
+                    console.log(outHTML);
+                    $("#blogbody").append(outHTML);
+                },
+                error: function (resultError) {
+                    alert("He thong dang bao tri");
+                }
+            });
+
         });
 
-    })
+
+
 </script>
 
 
