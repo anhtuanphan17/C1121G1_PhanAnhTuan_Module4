@@ -13,6 +13,8 @@ public class CustomerDto {
     private String customerPhone;
     private String customerEmail;
     private String customerAddress;
+    private int active = 1;
+
 
     private CustomerType customerType;
 
@@ -97,5 +99,13 @@ public class CustomerDto {
 
     public void setCustomerType(CustomerType customerType) {
         this.customerType = customerType;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }

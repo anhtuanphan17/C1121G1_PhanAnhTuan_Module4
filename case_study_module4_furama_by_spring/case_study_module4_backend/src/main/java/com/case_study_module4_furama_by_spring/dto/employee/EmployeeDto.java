@@ -16,7 +16,7 @@ public class EmployeeDto {
     private String employeePhone;
     private String employeeEmail;
     private String employeeAddress;
-
+    private int active;
     private Position position;
 
     private EducationDegree educationDegree;
@@ -91,6 +91,14 @@ public class EmployeeDto {
 
     public void setEmployeeAddress(String employeeAddress) {
         this.employeeAddress = employeeAddress;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 
     public Position getPosition() {

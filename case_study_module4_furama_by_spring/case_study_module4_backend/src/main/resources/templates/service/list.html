@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
+<head th:replace="/customer/layout :: boostrap">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/customer/layout :: navbar">
+
+</div>
+<a th:href="@{/service/create}">Add new service</a>
+<p th:if="${message}">
+    <span style="color: greenyellow" th:text="${message}"></span>
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>No.</th>
+        <th>Service ID</th>
+        <th>Service Code</th>
+        <th>Service Name</th>
+        <th>Service Area</th>
+        <th>Service Cost</th>
+        <th>Service Max People</th>
+        <th>Standard Room</th>
+        <th>Description Other Convenience</th>
+        <th>Pool Area</th>
+        <th>Number Of Floors</th>
+        <th>Free Service Include </th>
+        <th>Rent Type </th>
+        <th>Service Type </th>
+    </tr>
+
+    <tr th:each="serviceEntity, loop:${serviceList}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${serviceEntity.serviceId}"></td>
+        <td th:text="${serviceEntity.serviceCode}"></td>
+        <td th:text="${serviceEntity.serviceName}"></td>
+        <td th:text="${serviceEntity.serviceArea}"></td>
+        <td th:text="${serviceEntity.serviceCost}"></td>
+        <td th:text="${serviceEntity.serviceMaxPeople}"></td>
+        <td th:text="${serviceEntity.standardRoom}"></td>
+        <td th:text="${serviceEntity.descriptionOtherConvenience}"></td>
+        <td th:text="${serviceEntity.poolArea}"></td>
+        <td th:text="${serviceEntity.numberOfFloors}"></td>
+        <td th:text="${serviceEntity.freeServiceInclude}"></td>
+        <td th:text="${serviceEntity.rentType.rentTypeName}"></td>
+        <td th:text="${serviceEntity.serviceType.serviceTypeName}"></td>
+    </tr>
+</table>
+
+
+<!--Modal create-->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    create new service
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Choose service you want to add</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <a th:href="@{/service/villa}"><button type="button" class="btn btn-primary">Villa</button></a>
+                <a th:href="@{/service/room}"><button type="button" class="btn btn-primary">House</button></a>
+                <a th:href="@{/service/house}"><button type="button" class="btn btn-primary">Room</button></a>
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<a th:if="${serviceList.hasPrevious()}"
+   th:href="@{/service/list(page=${serviceList.number - 1},searchWord=${searchWordValue})} ">Previous</a>
+<span th:text="${serviceList.number+1}"></span>/<span th:text="${serviceList.totalPages}"></span>
+
+<a th:if="${serviceList.hasNext()}"
+   th:href="@{/service/list(page=${serviceList.number + 1},searchWord=${searchWordValue})} ">Next</a>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+    function getID(a) {
+        let id = a.attr('data-id')
+        document.getElementById('modalDelete').value = id;
+    }
+</script>
+</html>

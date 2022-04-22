@@ -19,6 +19,8 @@ public class Employee {
     private String employeePhone;
     private String employeeEmail;
     private String employeeAddress;
+    @Column(name = "active", columnDefinition = "BIT(1) default 1")
+    private int active;
 
     @ManyToOne
     @JoinColumn(name = "position_id",referencedColumnName = "positionId")
@@ -145,4 +147,6 @@ public class Employee {
     public void setContractSet(Set<Contract> contractSet) {
         this.contractSet = contractSet;
     }
+
+
 }

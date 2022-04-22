@@ -12,7 +12,7 @@ public class RentType {
     private String rentTypeCost;
 
     @OneToMany(mappedBy = "rentType")
-    private Set<Service> serviceSet;
+    private Set<ServiceEntity> serviceSet;
 
 
     public RentType() {
@@ -42,11 +42,11 @@ public class RentType {
         this.rentTypeCost = rentTypeCost;
     }
 
-    public Set<Service> getServiceSet() {
+    public Set<ServiceEntity> getServiceSet() {
         return serviceSet;
     }
 
-    public void setServiceSet(Set<Service> serviceSet) {
+    public void setServiceSet(Set<ServiceEntity> serviceSet) {
         this.serviceSet = serviceSet;
     }
 }

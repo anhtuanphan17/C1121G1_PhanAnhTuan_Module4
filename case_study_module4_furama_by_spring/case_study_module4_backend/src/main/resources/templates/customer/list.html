@@ -5,8 +5,13 @@
     <title>Title</title>
 </head>
 <body>
+<div th:replace="/customer/layout :: navbar">
 
+</div>
 <a th:href="@{/customer/create}">Add new customer</a>
+<p th:if="${message}">
+    <span style="color: greenyellow" th:text="${message}"></span>
+</p>
 
 <table class="table table-striped">
     <tr>

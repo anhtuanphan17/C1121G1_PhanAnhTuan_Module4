@@ -1,9 +1,8 @@
 package com.case_study_module4_furama_by_spring.model.contract;
 
 import com.case_study_module4_furama_by_spring.model.customer.Customer;
-import com.case_study_module4_furama_by_spring.model.customer.CustomerType;
 import com.case_study_module4_furama_by_spring.model.employee.Employee;
-import com.case_study_module4_furama_by_spring.model.service_entity.Service;
+import com.case_study_module4_furama_by_spring.model.service_entity.ServiceEntity;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -31,7 +30,7 @@ public class Contract {
 
     @ManyToOne
     @JoinColumn(name = "service_id",referencedColumnName = "serviceId")
-    private Service service;
+    private ServiceEntity service;
 
     public Contract() {
     }
@@ -100,11 +99,11 @@ public class Contract {
         this.customer = customer;
     }
 
-    public Service getService() {
+    public ServiceEntity getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(ServiceEntity service) {
         this.service = service;
     }
 }

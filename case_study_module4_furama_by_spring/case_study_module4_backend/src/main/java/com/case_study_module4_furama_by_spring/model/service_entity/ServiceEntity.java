@@ -6,10 +6,11 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Service {
+public class ServiceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer serviceId;
+    private String serviceCode;
     private String serviceName;
     private Integer serviceArea;
     private Double serviceCost;
@@ -18,6 +19,9 @@ public class Service {
     private String descriptionOtherConvenience;
     private Double poolArea;
     private Integer numberOfFloors;
+    private String freeServiceInclude;
+    @Column(name = "active", columnDefinition = "BIT(1) default 1")
+    private int active;
 
     @ManyToOne
     @JoinColumn(name = "rent_type_id", referencedColumnName = "rentTypeId")
@@ -30,7 +34,7 @@ public class Service {
     @OneToMany(mappedBy = "service")
     private Set<Contract> contractSet;
 
-    public Service() {
+    public ServiceEntity() {
     }
 
     public Integer getServiceId() {
@@ -39,6 +43,14 @@ public class Service {
 
     public void setServiceId(Integer serviceId) {
         this.serviceId = serviceId;
+    }
+
+    public String getServiceCode() {
+        return serviceCode;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
     }
 
     public String getServiceName() {
@@ -105,6 +117,16 @@ public class Service {
         this.numberOfFloors = numberOfFloors;
     }
 
+    public String getFreeServiceInclude() {
+        return freeServiceInclude;
+    }
+
+    public void setFreeServiceInclude(String freeServiceInclude) {
+        this.freeServiceInclude = freeServiceInclude;
+    }
+
+
+
     public RentType getRentType() {
         return rentType;
     }
@@ -128,4 +150,5 @@ public class Service {
     public void setContractSet(Set<Contract> contractSet) {
         this.contractSet = contractSet;
     }
+
 }

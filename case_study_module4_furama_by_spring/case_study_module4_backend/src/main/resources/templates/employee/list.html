@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<div th:replace="/customer/layout :: navbar"></div>
 <a th:href="@{/employee/create}">Add new employee</a>
 
 <table class="table table-striped">
@@ -40,9 +41,8 @@
         <td th:text="${employee.educationDegree.educationDegreeName}"></td>
         <td th:text="${employee.division.divisionName}"></td>
         <td th:text="${employee.appUser.userName}"></td>
-        <td><a th:href="@{/customer/edit/{id}/(id=${employee.employeeId})}"> Edit</a></td>
-        <td><a th:href="@{/customer/delete/{id}/(id=${employee.employeeId})}">Delete</a></td>
-        <td><a th:href="@{/customer/view/{id}/(id=${employee.employeeId})}">View</a></td>
+        <td><a th:href="@{/employee/edit/{id}/(id=${employee.employeeId})}"> Edit</a></td>
+        <td><a th:href="@{/employee/delete/{id}/(id=${employee.employeeId})}">Delete</a></td>
 
     </tr>
 </table>

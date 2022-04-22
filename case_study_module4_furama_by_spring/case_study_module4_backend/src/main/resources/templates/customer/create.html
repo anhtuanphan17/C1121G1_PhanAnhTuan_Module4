@@ -9,7 +9,6 @@
 
 <div class="container mx-auto w-50 bg-light">
     <h1>Create Form</h1>
-    <p th:if="${message}" th:text="${message}"></p>
     <form method="post" action="/customer/create" th:object="${customerDto}">
         <div class="form-group">
             <label>Customer Code</label>
@@ -23,12 +22,15 @@
         </div>
         <div class="form-group">
             <label>Customer Birthday</label>
-            <input type="text" class="form-control" th:field="*{customerBirthday}">
+            <input type="date" class="form-control" th:field="*{customerBirthday}">
             <div th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"></div>
         </div>
         <div class="form-group">
             <label>Customer Gender</label>
-            <input type="text" class="form-control" th:field="*{customerGender}">
+            <select class="form-control" th:field="*{customerGender}">
+                <option th:value="1" th:text="Male"></option>
+                <option th:value="0" th:text="Female"></option>
+            </select>
             <div th:if="${#fields.hasErrors('customerGender')}" th:errors="*{customerGender}"></div>
         </div>
         <div class="form-group">

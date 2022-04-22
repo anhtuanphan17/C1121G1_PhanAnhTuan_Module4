@@ -17,4 +17,14 @@ public class EmployeeService implements IEmployeeService {
     public Page<Employee> findAllEmployee(Pageable pageable) {
         return employeeRepository.findAll(pageable);
     }
+
+    @Override
+    public void save(Employee employee) {
+        employeeRepository.save(employee);
+    }
+
+    @Override
+    public Employee findEmployeeById(Integer id) {
+        return employeeRepository.findById(id).orElse(null);
+    }
 }

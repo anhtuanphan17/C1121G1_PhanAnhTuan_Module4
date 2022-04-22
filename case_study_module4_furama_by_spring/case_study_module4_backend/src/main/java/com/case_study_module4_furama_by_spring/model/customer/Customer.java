@@ -23,6 +23,9 @@ public class Customer {
     private String customerEmail;
     private String customerAddress;
 
+    @Column(name = "active", columnDefinition = "BIT(1) default 1")
+    private int active;
+
     @ManyToOne
     @JoinColumn(name = "customer_type_id",referencedColumnName = "customerTypeId")
     private CustomerType customerType;

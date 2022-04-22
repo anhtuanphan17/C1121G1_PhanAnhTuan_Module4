@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -52,7 +53,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public String createCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult) {
+    public String createCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto, customer);
         CustomerType customerType = new CustomerType();
@@ -60,6 +61,7 @@ public class CustomerController {
         customerType.setCustomerTypeName(customerDto.getCustomerType().getCustomerTypeName());
         customer.setCustomerType(customerType);
         customerService.save(customer);
+        redirectAttributes.addFlashAttribute("message","added customer successfully");
 
         return "redirect:/customer/list";
     }

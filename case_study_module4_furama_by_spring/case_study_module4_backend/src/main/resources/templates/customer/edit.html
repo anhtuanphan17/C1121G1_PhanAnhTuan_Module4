@@ -24,12 +24,16 @@
         </div>
         <div class="form-group">
             <label>Customer Birthday</label>
-            <input type="text" class="form-control" th:field="*{customerBirthday}">
+            <input type="date" class="form-control" th:field="*{customerBirthday}">
             <div th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"></div>
         </div>
         <div class="form-group">
             <label>Customer Gender</label>
-            <input type="text" class="form-control" th:field="*{customerGender}">
+<!--            <input type="text" class="form-control" th:field="*{customerGender}">-->
+            <select class="form-control" th:field="*{customerGender}">
+                <option th:value="1" th:text="Male"></option>
+                <option th:value="0" th:text="Female"></option>
+            </select>
             <div th:if="${#fields.hasErrors('customerGender')}" th:errors="*{customerGender}"></div>
         </div>
         <div class="form-group">
