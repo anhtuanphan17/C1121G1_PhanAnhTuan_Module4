@@ -8,9 +8,10 @@
 <body>
 
 <div class="container mx-auto w-50 bg-light">
-    <h1>Create Form</h1>
+    <h1>Edit Form</h1>
     <p th:if="${message}" th:text="${message}"></p>
-    <form method="post" action="/customer/create" th:object="${customerDto}">
+    <form method="post" action="/customer/edit" th:object="${customerDto}">
+        <input type="hidden" th:field="*{customerId}">
         <div class="form-group">
             <label>Customer Code</label>
             <input type="text" class="form-control" th:field="*{customerCode}">
@@ -64,7 +65,6 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-
 
 </body>
 </html>

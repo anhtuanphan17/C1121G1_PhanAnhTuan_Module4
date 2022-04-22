@@ -8,63 +8,64 @@
 <body>
 
 <div class="container mx-auto w-50 bg-light">
-    <h1>Create Form</h1>
+    <h1>Delete Form</h1>
     <p th:if="${message}" th:text="${message}"></p>
-    <form method="post" action="/customer/create" th:object="${customerDto}">
+    <form method="post" action="/customer/delete" th:object="${customer}">
+        <input type="hidden" th:field="*{customerId}">
         <div class="form-group">
             <label>Customer Code</label>
-            <input type="text" class="form-control" th:field="*{customerCode}">
+            <input readonly class="form-control" th:field="*{customerCode}">
             <div th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></div>
         </div>
         <div class="form-group">
             <label>Customer Name</label>
-            <input type="text" class="form-control" th:field="*{customerName}">
+            <input readonly class="form-control" th:field="*{customerName}">
             <div th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></div>
         </div>
         <div class="form-group">
             <label>Customer Birthday</label>
-            <input type="text" class="form-control" th:field="*{customerBirthday}">
+            <input readonly  class="form-control" th:field="*{customerBirthday}">
             <div th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"></div>
         </div>
         <div class="form-group">
             <label>Customer Gender</label>
-            <input type="text" class="form-control" th:field="*{customerGender}">
+            <input readonly  class="form-control" th:field="*{customerGender}">
             <div th:if="${#fields.hasErrors('customerGender')}" th:errors="*{customerGender}"></div>
         </div>
         <div class="form-group">
             <label>Customer IdCard</label>
-            <input type="text" class="form-control" th:field="*{customerIdCard}">
+            <input readonly  class="form-control" th:field="*{customerIdCard}">
             <div th:if="${#fields.hasErrors('customerIdCard')}" th:errors="*{customerIdCard}"></div>
         </div>
         <div class="form-group">
             <label>Customer Phone</label>
-            <input type="text" class="form-control" th:field="*{customerPhone}">
+            <input readonly class="form-control" th:field="*{customerPhone}">
             <div th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}"></div>
         </div>
         <div class="form-group">
             <label>Customer Email</label>
-            <input type="text" class="form-control" th:field="*{customerEmail}">
+            <input readonly  class="form-control" th:field="*{customerEmail}">
             <div th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"></div>
         </div>
         <div class="form-group">
             <label>Customer Address</label>
-            <input type="text" class="form-control" th:field="*{customerAddress}">
+            <input readonly  class="form-control" th:field="*{customerAddress}">
             <div th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"></div>
         </div>
         <div class="form-group">
             <label>Customer Type: </label>
-            <select th:field="*{customerType}" class="form-control">
-                <option th:each="customerType:${customerTypeList}" th:text="${customerType.customerTypeName}"
-                        th:value="${customerType.customerTypeId}"></option>
+            <input readonly class="form-control" th:field="*{customerType.customerTypeName}">
+<!--            <select readonly th:field="*{customerType}" class="form-control">-->
+<!--                <option th:each="customerType:${customerTypeList}" th:text="${customerType.customerTypeName}"-->
+<!--                        th:value="${customerType.customerTypeId}"></option>-->
 
-                <div th:errors="*{customerType}"></div>
-            </select>
+<!--                <div th:errors="*{customerType}"></div>-->
+<!--            </select>-->
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Delete</button>
     </form>
 </div>
-
 
 </body>
 </html>

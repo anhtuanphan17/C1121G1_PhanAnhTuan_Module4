@@ -1,4 +1,4 @@
-package com.case_study_module4_furama_by_spring.service;
+package com.case_study_module4_furama_by_spring.service.customer_service;
 
 import com.case_study_module4_furama_by_spring.model.customer.Customer;
 import com.case_study_module4_furama_by_spring.model.customer.CustomerType;
@@ -11,4 +11,9 @@ public interface ICustomerService {
     Page<Customer> findALlCustomer(Pageable pageable);
 
 
+    void save(Customer customer);
+
+    Customer findCustomerById(Integer id);
+
+    void remove(Customer customer);
 }

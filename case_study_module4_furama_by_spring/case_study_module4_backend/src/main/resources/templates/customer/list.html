@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
-<head>
+<head th:replace="/customer/layout :: boostrap">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-<h3 th:href="@{/customer/create}">Add new customer</h3>
+<a th:href="@{/customer/create}">Add new customer</a>
 
 <table class="table table-striped">
     <tr>
         <th>No.</th>
         <th>Customer ID</th>
+        <th>Customer Code</th>
         <th>Customer Name</th>
         <th>Date Of Birth</th>
         <th>Gender</th>
@@ -20,22 +21,28 @@
         <th>Email</th>
         <th>Address</th>
         <th>Customer Type </th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
     <tr th:each="customer, loop:${customerList}">
         <td th:text="${loop.count}"></td>
         <td th:text="${customer.customerId}"></td>
+        <td th:text="${customer.customerCode}"></td>
         <td th:text="${customer.customerName}"></td>
         <td th:text="${customer.customerBirthday}"></td>
-        <td th:text="${customer.customerGender}"></td>
+        <td th:switch="${customer.customerGender}">
+            <p th:case="1">Male</p>
+            <p th:case="0">Female</p>
+        </td>
         <td th:text="${customer.customerIdCard}"></td>
         <td th:text="${customer.customerPhone}"></td>
         <td th:text="${customer.customerEmail}"></td>
         <td th:text="${customer.customerAddress}"></td>
         <td th:text="${customer.customerType.customerTypeName}"></td>
-        <td><a th:href="@{/edit/{id}/(id=${customer.customerId})}"> Edit</a></td>
-        <td><a th:href="@{/delete/{id}/(id=${customer.customerId})}">Delete</a></td>
-        <td><a th:href="@{/view/{id}/(id=${customer.customerId})}">View</a></td>
+        <td><a th:href="@{/customer/edit/{id}/(id=${customer.customerId})}"> Edit</a></td>
+        <td><a th:href="@{/customer/delete/{id}/(id=${customer.customerId})}">Delete</a></td>
+        <td><a th:href="@{/customer/view/{id}/(id=${customer.customerId})}">View</a></td>
 <!--        <td><a th:href="@{/view(id=${customer.customerId})}">View</a></td>-->
 
     </tr>
