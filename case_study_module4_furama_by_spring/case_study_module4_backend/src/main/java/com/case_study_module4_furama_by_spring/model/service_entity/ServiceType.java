@@ -16,6 +16,11 @@ public class ServiceType {
     public ServiceType() {
     }
 
+    public ServiceType(Integer serviceTypeId, String serviceTypeName) {
+        this.serviceTypeId = serviceTypeId;
+        this.serviceTypeName = serviceTypeName;
+    }
+
     public Integer getServiceTypeId() {
         return serviceTypeId;
     }

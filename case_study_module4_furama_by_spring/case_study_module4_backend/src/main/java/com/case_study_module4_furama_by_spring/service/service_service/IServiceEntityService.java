@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface IServiceEntityService {
     Page<ServiceEntity> findAll(Pageable pageable);
+
+    void save(ServiceEntity serviceEntity);
 }

@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 
 public class ServiceDto {
     private Integer serviceId;
+    private String serviceCode;
     private String serviceName;
     private Integer serviceArea;
     private Double serviceCost;
@@ -16,6 +17,8 @@ public class ServiceDto {
     private String descriptionOtherConvenience;
     private Double poolArea;
     private Integer numberOfFloors;
+    private String freeServiceInclude;
+
 
     private RentType rentType;
 

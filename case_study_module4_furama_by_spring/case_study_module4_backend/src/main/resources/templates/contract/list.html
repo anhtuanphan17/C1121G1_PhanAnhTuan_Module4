@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
+<head th:replace="/customer/layout :: boostrap">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/customer/layout :: navbar">
+
+</div>
+
+<a th:href="@{/contract/create}">Add new contract</a>
+<p th:if="${message}">
+    <span style="color: greenyellow" th:text="${message}"></span>
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>No.</th>
+        <th>Contract ID</th>
+        <th>Contract Start Date </th>
+        <th>Contract End Date</th>
+        <th>Contract Deposit</th>
+        <th>Total Money</th>
+        <th>Employee ID</th>
+        <th>Customer ID</th>
+        <th>Service ID</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    <tr th:each="contract, loop:${contractList}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${contract.contractId}"></td>
+        <td th:text="${contract.contractStartDate}"></td>
+        <td th:text="${contract.contractEndDate}"></td>
+        <td th:text="${contract.contractDeposit}"></td>
+
+        <td th:text="${contract.contractTotalMoney}"></td>
+        <td th:text="${contract.employee.employeeId}"></td>
+        <td th:text="${contract.customer.customerId}"></td>
+        <td th:text="${contract.service.serviceId}"></td>
+        <td><a th:href="@{/contract/edit/{id}/(id=${contract.contractId})}"> Edit</a></td>
+        <td><a th:href="@{/contract/delete/{id}/(id=${contract.contractId})}">Delete</a></td>
+        <td><a th:href="@{/contract/view/{id}/(id=${contract.contractId})}">View</a></td>
+
+    </tr>
+</table>
+
+<a th:if="${contractList.hasPrevious()}"
+   th:href="@{/customer/list(page=${contractList.number - 1},searchWord=${searchWordValue})} ">Previous</a>
+<span th:text="${contractList.number+1}"></span>/<span th:text="${contractList.totalPages}"></span>
+
+<a th:if="${contractList.hasNext()}"
+   th:href="@{/customer/list(page=${contractList.number + 1},searchWord=${searchWordValue})} ">Next</a>
+
+</body>
+</html>

@@ -1,8 +1,8 @@
 package com.case_study_module4_furama_by_spring.controller;
 
-import com.case_study_module4_furama_by_spring.dto.customer.CustomerDto;
-import com.case_study_module4_furama_by_spring.model.customer.Customer;
-import com.case_study_module4_furama_by_spring.model.customer.CustomerType;
+import com.case_study_module4_furama_by_spring.dto.service.HouseDto;
+import com.case_study_module4_furama_by_spring.dto.service.RoomDto;
+import com.case_study_module4_furama_by_spring.dto.service.VillaDto;
 import com.case_study_module4_furama_by_spring.model.service_entity.RentType;
 import com.case_study_module4_furama_by_spring.model.service_entity.ServiceEntity;
 import com.case_study_module4_furama_by_spring.model.service_entity.ServiceType;
@@ -18,9 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,7 @@ import java.util.Optional;
 public class ServiceController {
 
     @Autowired
-    IServiceEntityService serviceService;
+    IServiceEntityService serviceEntityService;
     @Autowired
     IRentTypeService rentTypeService;
     @Autowired
@@ -45,27 +46,77 @@ public class ServiceController {
         return serviceTypeService.findAll();
     }
 
+    @ModelAttribute("standardRoomList")
+    public Iterable<String> sendStandardRoomList() {
+        return Arrays.asList("Vip", "Luxury", "superior");
+    }
+
     @GetMapping("/list")
     public String showCustomerList(@PageableDefault(value = 2) Pageable pageable, @RequestParam Optional<String> searchWord, ModelMap modelMap) {
         String searchWordValue = searchWord.orElse("");
-        Page<ServiceEntity> serviceList = serviceService.findAll(pageable);
+        Page<ServiceEntity> serviceList = serviceEntityService.findAll(pageable);
         modelMap.addAttribute("serviceList", serviceList);
         modelMap.addAttribute("searchWordValue", searchWordValue);
         return "service/list";
     }
-//
-//    @PostMapping("/create")
-//    public String createCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-//        Customer customer = new Customer();
-//        BeanUtils.copyProperties(customerDto, customer);
-//        CustomerType customerType = new CustomerType();
-//        customerType.setCustomerTypeId(customerDto.getCustomerType().getCustomerTypeId());
-//        customerType.setCustomerTypeName(customerDto.getCustomerType().getCustomerTypeName());
-//        customer.setCustomerType(customerType);
-//        customerService.save(customer);
-//        redirectAttributes.addFlashAttribute("message","added customer successfully");
-//
-//        return "redirect:/customer/list";
-//    }
+
+    @GetMapping(value = "/create")
+    public String showCreateForm(@RequestParam Integer serviceType,ModelMap modelMap) {
+        ModelAndView modelAndView = new ModelAndView("service/create");
+        if (serviceType == 1) {
+            modelMap.addAttribute("VillaDto", new VillaDto());
+        } else if (serviceType == 2) {
+            modelMap.addAttribute("HouseDto", new HouseDto());
+        } else if (serviceType == 3) {
+            modelMap.addAttribute("RoomDto", new RoomDto());
+        }
+        modelMap.addAttribute("serviceTypeId", serviceType);
+        return "service/create";
+    }
+
+    @PostMapping(value = "/saveVilla")
+    public String saveVilla(@Valid @ModelAttribute("villaDto") VillaDto villaDto,
+                            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/service/create";
+        }
+        villaDto.setServiceType(new ServiceType(1, "Villa"));
+        ServiceEntity serviceEntity = new ServiceEntity();
+        BeanUtils.copyProperties(villaDto, serviceEntity);
+        serviceEntity.setRentType(villaDto.getRentType());
+        serviceEntity.setServiceType(villaDto.getServiceType());
+        serviceEntityService.save(serviceEntity);
+        return "redirect:/service/list";
+    }
+
+    @PostMapping(value = "/saveHouse")
+    public String saveHouse(@Valid @ModelAttribute("houseDto") HouseDto houseDto,
+                            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/service/create";
+        }
+        houseDto.setServiceType(new ServiceType(2, "House"));
+        ServiceEntity serviceEntity = new ServiceEntity();
+        BeanUtils.copyProperties(houseDto, serviceEntity);
+        serviceEntity.setRentType(houseDto.getRentType());
+        serviceEntity.setServiceType(houseDto.getServiceType());
+        serviceEntityService.save(serviceEntity);
+        return "redirect:/service/list";
+    }
+
+    @PostMapping(value = "/saveRoom")
+    public String saveRoom(@Valid @ModelAttribute("roomDto") RoomDto roomDto,
+                           BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/service/create";
+        }
+        roomDto.setServiceType(new ServiceType(3, "Room"));
+        ServiceEntity serviceEntity = new ServiceEntity();
+        BeanUtils.copyProperties(roomDto, serviceEntity);
+        serviceEntity.setRentType(roomDto.getRentType());
+        serviceEntity.setServiceType(roomDto.getServiceType());
+        serviceEntityService.save(serviceEntity);
+        return "redirect:/service/list";
+    }
 
 }

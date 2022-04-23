@@ -1,7 +1,7 @@
 package com.case_study_module4_furama_by_spring.service.service_service.impl;
 
 import com.case_study_module4_furama_by_spring.model.service_entity.ServiceEntity;
-import com.case_study_module4_furama_by_spring.repository.service_repository.IServiceEntityRepository;
+import com.case_study_module4_furama_by_spring.repository.service_repo.IServiceEntityRepository;
 import com.case_study_module4_furama_by_spring.service.service_service.IServiceEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,5 +16,10 @@ public class ServiceEntityService implements IServiceEntityService {
     @Override
     public Page<ServiceEntity> findAll(Pageable pageable) {
         return serviceEntityRepository.findAll(pageable);
+    }
+
+    @Override
+    public void save(ServiceEntity serviceEntity) {
+        serviceEntityRepository.save(serviceEntity);
     }
 }
