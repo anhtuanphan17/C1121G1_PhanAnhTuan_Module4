@@ -22,4 +22,9 @@ public class ServiceEntityService implements IServiceEntityService {
     public void save(ServiceEntity serviceEntity) {
         serviceEntityRepository.save(serviceEntity);
     }
+
+    @Override
+    public Iterable<ServiceEntity> findAll() {
+        return serviceEntityRepository.findAll();
+    }
 }

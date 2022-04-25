@@ -27,4 +27,9 @@ public class EmployeeService implements IEmployeeService {
     public Employee findEmployeeById(Integer id) {
         return employeeRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Iterable<Employee> findAll() {
+        return employeeRepository.findAll();
+    }
 }

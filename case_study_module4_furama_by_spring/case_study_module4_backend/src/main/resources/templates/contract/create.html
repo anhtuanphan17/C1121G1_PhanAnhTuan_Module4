@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/html">
+<head th:replace="/customer/layout :: boostrap">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<!--private Integer contractId;-->
+<!--private String contractStartDate;-->
+<!--private String contractEndDate;-->
+<!--private Double contractDeposit;-->
+<!--private Double contractTotalMoney;-->
+
+<!--private Employee employee;-->
+
+<!--private Customer customer;-->
+
+<!--private ServiceEntity service;-->
+
+<div class="container mx-auto w-50 bg-light">
+    <h1>Create Contract Form</h1>
+    <form method="post" action="/contract/create" th:object="${contractDto}">
+
+            <input type="hidden" class="form-control" th:field="*{contractId}">
+
+        <div class="form-group">
+            <label>Contract Start Date</label>
+            <input type="date" class="form-control" th:field="*{contractStartDate}">
+            <div th:if="${#fields.hasErrors('contractStartDate')}" th:errors="*{contractStartDate}"></div>
+        </div>
+        <div class="form-group">
+            <label>Contract End Date</label>
+            <input type="date" class="form-control" th:field="*{contractEndDate}">
+            <div th:if="${#fields.hasErrors('contractEndDate')}" th:errors="*{contractEndDate}"></div>
+        </div>
+        <div class="form-group">
+            <label> Contract Deposit </label>
+            <input type="text" class="form-control" th:field="*{contractDeposit}">
+            <div th:if="${#fields.hasErrors('contractDeposit')}" th:errors="*{contractDeposit}"></div>
+        </div>
+        <div class="form-group">
+            <label>Contract Total Money</label>
+            <input type="text" class="form-control" th:field="*{contractTotalMoney}">
+            <div th:if="${#fields.hasErrors('contractTotalMoney')}" th:errors="*{contractTotalMoney}"></div>
+        </div>
+<!--        <div class="form-group">-->
+<!--            <label>Employee ID</label>-->
+<!--            <input type="text" class="form-control" th:field="*{employee.employeeId}">-->
+<!--            <div  th:errors="*{employee}"></div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label>Customer ID</label>-->
+<!--            <input type="text" class="form-control" th:field="*{customer.customerCode}">-->
+<!--            <div  th:errors="*{customer}"></div>-->
+<!--        </div>-->
+        <div class="form-group">
+            <label>Customer Code</label>
+            <select th:field="*{customer}">
+                <option th:each="customer,loop:${customerList}" th:text="${customer.customerName}"
+                th:value="${customer.customerId}"></option>
+                <div th:errors="*{customer}"></div>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Employee Name</label>
+            <select th:field="*{employee}">
+                <option th:each="employee1,loop:${employeeList}" th:text="${employee1.employeeName}"
+                        th:value="${employee1.employeeId}"></option>
+                <div th:errors="*{employee}"></div>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Service</label>
+            <select th:field="*{service}" class="form-control">
+                <option th:each="serviceEntity:${serviceEntityList}" th:text="${serviceEntity.serviceName}"
+                        th:value="${serviceEntity.serviceId}"></option>
+
+                <div th:errors="*{service}"></div>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+</body>
+</html>

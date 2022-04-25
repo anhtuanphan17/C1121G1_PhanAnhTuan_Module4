@@ -25,7 +25,7 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Address</th>
-        <th>Customer Type </th>
+        <th>Customer Type</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -45,10 +45,15 @@
         <td th:text="${customer.customerEmail}"></td>
         <td th:text="${customer.customerAddress}"></td>
         <td th:text="${customer.customerType.customerTypeName}"></td>
-        <td><a th:href="@{/customer/edit/{id}/(id=${customer.customerId})}"> Edit</a></td>
-        <td><a th:href="@{/customer/delete/{id}/(id=${customer.customerId})}">Delete</a></td>
-        <td><a th:href="@{/customer/view/{id}/(id=${customer.customerId})}">View</a></td>
-<!--        <td><a th:href="@{/view(id=${customer.customerId})}">View</a></td>-->
+        <td><a th:href="@{/customer/edit/{id}/(id=${customer.customerId})}">
+            <button type="button" class="btn btn-primary">Edit</button>
+        </a></td>
+        <td><a th:href="@{/customer/delete/{id}/(id=${customer.customerId})}">
+            <button type="button" class="btn btn-primary">Delete</button>
+        </a></td>
+
+
+        <!--        <td><a th:href="@{/view(id=${customer.customerId})}">View</a></td>-->
 
     </tr>
 </table>

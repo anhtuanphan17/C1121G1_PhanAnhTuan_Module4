@@ -18,15 +18,14 @@
     <tr>
         <th>No.</th>
         <th>Contract ID</th>
-        <th>Contract Start Date </th>
+        <th>Contract Start Date</th>
         <th>Contract End Date</th>
         <th>Contract Deposit</th>
         <th>Total Money</th>
-        <th>Employee ID</th>
-        <th>Customer ID</th>
-        <th>Service ID</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Employee Name</th>
+        <th>Customer Name</th>
+        <th>Service Name</th>
+
     </tr>
 
     <tr th:each="contract, loop:${contractList}">
@@ -37,13 +36,27 @@
         <td th:text="${contract.contractDeposit}"></td>
 
         <td th:text="${contract.contractTotalMoney}"></td>
-        <td th:text="${contract.employee.employeeId}"></td>
-        <td th:text="${contract.customer.customerId}"></td>
-        <td th:text="${contract.service.serviceId}"></td>
-        <td><a th:href="@{/contract/edit/{id}/(id=${contract.contractId})}"> Edit</a></td>
-        <td><a th:href="@{/contract/delete/{id}/(id=${contract.contractId})}">Delete</a></td>
-        <td><a th:href="@{/contract/view/{id}/(id=${contract.contractId})}">View</a></td>
+        <td th:text="${contract.employee.employeeName}"></td>
+        <td th:text="${contract.customer.customerName}"></td>
+        <td th:text="${contract.service.serviceName}"></td>
+        <td>
+            <a data-toggle="modal"
+               href="#exampleModal"
+               th:data-id="${contract.contractId}"
+               th:data-customer-name="${contract.customer.customerName}"
+               th:data-employee-name="${contract.employee.employeeName}"
+               th:data-service-name="${contract.service.serviceName}"
+               th:data-contract-start-date="${contract.contractStartDate}"
+               th:data-contract-end-date="${contract.contractEndDate}"
+               th:data-contract-deposit="${contract.contractDeposit}"
+               th:data-contract-total-money="${contract.contractTotalMoney}"
+               onclick="getID($(this))">
+                <button type="button" class="btn btn-primary" >
+                   View
+                </button>
+            </a>
 
+        </td>
     </tr>
 </table>
 
@@ -54,5 +67,12 @@
 <a th:if="${contractList.hasNext()}"
    th:href="@{/customer/list(page=${contractList.number + 1},searchWord=${searchWordValue})} ">Next</a>
 
+
+
+<!-- Modal -->
+<th:block th:replace="/contract/view :: modalView"></th:block>
+
+
 </body>
+<th:block th:replace="/contract/view :: scriptOfViewDetails" ></th:block>
 </html>

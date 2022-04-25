@@ -10,4 +10,6 @@ public interface IEmployeeService {
     void save(Employee employee);
 
     Employee findEmployeeById(Integer id);
+
+    Iterable<Employee> findAll();
 }

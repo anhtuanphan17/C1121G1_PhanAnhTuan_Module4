@@ -8,4 +8,6 @@ public interface IServiceEntityService {
     Page<ServiceEntity> findAll(Pageable pageable);
 
     void save(ServiceEntity serviceEntity);
+
+    Iterable<ServiceEntity> findAll();
 }

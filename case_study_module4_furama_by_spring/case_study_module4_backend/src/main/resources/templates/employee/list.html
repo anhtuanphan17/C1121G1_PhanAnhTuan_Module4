@@ -41,18 +41,18 @@
         <td th:text="${employee.educationDegree.educationDegreeName}"></td>
         <td th:text="${employee.division.divisionName}"></td>
         <td th:text="${employee.appUser.userName}"></td>
-        <td><a th:href="@{/employee/edit/{id}/(id=${employee.employeeId})}"> Edit</a></td>
-        <td><a th:href="@{/employee/delete/{id}/(id=${employee.employeeId})}">Delete</a></td>
+        <td><a th:href="@{/employee/edit/{id}/(id=${employee.employeeId})}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+        <td><a th:href="@{/employee/delete/{id}/(id=${employee.employeeId})}"><button type="button" class="btn btn-primary">Delete</button></a></td>
 
     </tr>
 </table>
 
 <a th:if="${employeeList.hasPrevious()}"
-   th:href="@{/employee/list(page=${employeeList.number - 1},searchWord=${searchWordValue})} ">Previous</a>
+   th:href="@{/employee/list(page=${employeeList.number - 1},searchWord=${searchWordValue})} "><button type="button" class="btn btn-primary">Previous</button></a>
 <span th:text="${employeeList.number+1}"></span>/<span th:text="${employeeList.totalPages}"></span>
 
 <a th:if="${employeeList.hasNext()}"
-   th:href="@{/employee/list(page=${employeeList.number + 1},searchWord=${searchWordValue})} ">Next</a>
+   th:href="@{/employee/list(page=${employeeList.number + 1},searchWord=${searchWordValue})} "><button type="button" class="btn btn-primary">Next</button></a>
 
 </body>
 </html>

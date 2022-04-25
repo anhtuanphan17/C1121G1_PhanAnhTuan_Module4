@@ -6,6 +6,7 @@ import com.case_study_module4_furama_by_spring.model.service_entity.ServiceEntit
 
 import javax.persistence.*;
 import java.util.Set;
+
 @Entity
 public class Contract {
     @Id
@@ -20,16 +21,15 @@ public class Contract {
     private Set<ContractDetail> contractDetailSet;
 
     @ManyToOne
-    @JoinColumn(name ="employee_id",referencedColumnName = "employeeId")
+    @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")
     private Employee employee;
 
-
     @ManyToOne
-    @JoinColumn(name = "customer_id",referencedColumnName = "customerId")
+    @JoinColumn(name = "customer_id", referencedColumnName = "customerId")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "service_id",referencedColumnName = "serviceId")
+    @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
     private ServiceEntity service;
 
     public Contract() {

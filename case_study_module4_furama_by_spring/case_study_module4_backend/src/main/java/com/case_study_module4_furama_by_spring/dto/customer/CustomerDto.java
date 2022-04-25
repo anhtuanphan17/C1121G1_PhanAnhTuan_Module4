@@ -2,11 +2,19 @@ package com.case_study_module4_furama_by_spring.dto.customer;
 
 import com.case_study_module4_furama_by_spring.model.customer.CustomerType;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class CustomerDto {
 
     private Integer customerId;
+    @NotBlank
+    @Pattern(regexp = "^$|^(KH\\-){1}[0-9]{4}$", message = "invalid code")
     private String customerCode;
+    @NotBlank
+    @Pattern(regexp = "^$|^[a-zA-Z]{3,}$")
     private String customerName;
+
     private String customerBirthday;
     private Integer customerGender;
     private String customerIdCard;

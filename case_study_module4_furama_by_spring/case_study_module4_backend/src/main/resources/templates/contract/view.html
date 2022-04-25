@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- Modal -->
+<th:block th:fragment="modalView">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <input type="hidden" name="contractId" id="contractId">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Contract Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Customer Name: <span class="text-danger" id="customerName"></span></h5>
+                <h5>Employee Name: <span class="text-danger" id="employeeName"></span></h5>
+                <h5>Service Name: <span th:class="text-danger" id="serviceName"></span></h5>
+                <h5>Contract Start Date: <span class="text-danger" id="contractStartDate"></span></h5>
+                <h5>Contract End Date: <span class="text-danger" id="contractEndDate"></span></h5>
+                <h5>Contract Deposit: <span class="text-danger" id="contractDeposit"></span></h5>
+                <h5>Contract Total Money: <span class="text-danger" id="contractTotalMoney"></span></h5>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+
+</body>
+<th:block th:fragment="scriptOfViewDetails">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+            integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+            crossorigin="anonymous"></script>
+
+    <script>
+        function getID(a) {
+            let contractId = a.attr('data-id')
+            let customerName = a.attr('data-customer-name')
+            let employeeName = a.attr('data-employee-name')
+            let serviceName = a.attr('data-service-name')
+            let contractStartDate = a.attr('data-contract-start-date')
+            let contractEndDate = a.attr('data-contract-end-date')
+            let contractDeposit = a.attr('data-contract-deposit')
+            let contractTotalMoney = a.attr('data-contract-total-money')
+            document.getElementById('contractId').value = contractId;
+            document.getElementById('customerName').innerText = customerName;
+            document.getElementById('employeeName').innerText = employeeName;
+            document.getElementById('serviceName').innerText = serviceName;
+            document.getElementById("contractStartDate").innerText = contractStartDate;
+            document.getElementById("contractEndDate").innerText = contractEndDate;
+            document.getElementById("contractDeposit").innerText = contractDeposit;
+            document.getElementById("contractTotalMoney").innerText = contractTotalMoney;
+        }
+    </script>
+</th:block>
+
+</html>

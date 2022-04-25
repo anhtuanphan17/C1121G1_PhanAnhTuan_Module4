@@ -16,4 +16,6 @@ public interface ICustomerService {
     Customer findCustomerById(Integer id);
 
     void remove(Customer customer);
+
+    Iterable<Customer> findAll();
 }

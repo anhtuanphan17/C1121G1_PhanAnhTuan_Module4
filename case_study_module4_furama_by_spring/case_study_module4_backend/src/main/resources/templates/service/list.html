@@ -8,7 +8,10 @@
 <div th:replace="/customer/layout :: navbar">
 
 </div>
-<a th:href="@{/service/create}">Add new service</a>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    create new service
+</button>
 <p th:if="${message}">
     <span style="color: greenyellow" th:text="${message}"></span>
 </p>
@@ -51,10 +54,7 @@
 
 
 <!--Modal create-->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    create new service
-</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

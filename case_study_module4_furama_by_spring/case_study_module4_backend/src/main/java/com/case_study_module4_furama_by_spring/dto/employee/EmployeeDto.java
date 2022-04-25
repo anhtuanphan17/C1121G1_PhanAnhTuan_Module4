@@ -16,7 +16,7 @@ public class EmployeeDto {
     private String employeePhone;
     private String employeeEmail;
     private String employeeAddress;
-    private int active;
+    private int active = 1;
     private Position position;
 
     private EducationDegree educationDegree;
