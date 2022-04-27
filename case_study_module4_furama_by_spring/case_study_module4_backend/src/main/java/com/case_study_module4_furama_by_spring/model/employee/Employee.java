@@ -148,5 +148,11 @@ public class Employee {
         this.contractSet = contractSet;
     }
 
+    public int getActive() {
+        return active;
+    }
 
+    public void setActive(int active) {
+        this.active = active;
+    }
 }

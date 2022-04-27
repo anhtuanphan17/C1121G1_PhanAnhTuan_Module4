@@ -13,9 +13,10 @@ public class EmployeeService implements IEmployeeService {
     @Autowired
     IEmployeeRepository employeeRepository;
 
+
     @Override
-    public Page<Employee> findAllEmployee(Pageable pageable) {
-        return employeeRepository.findAll(pageable);
+    public Page<Employee> findAllEmployeeByName(String searchWord, Pageable pageable) {
+        return employeeRepository.findEmployeeByEmployeeNameContaining(searchWord,pageable);
     }
 
     @Override
@@ -31,5 +32,10 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Iterable<Employee> findAll() {
         return employeeRepository.findAll();
+    }
+
+    @Override
+    public void remove(Employee employee) {
+        employeeRepository.delete(employee);
     }
 }

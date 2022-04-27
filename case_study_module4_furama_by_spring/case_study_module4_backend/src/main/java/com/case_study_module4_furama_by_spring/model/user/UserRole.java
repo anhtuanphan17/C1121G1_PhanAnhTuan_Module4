@@ -16,4 +16,31 @@ public class UserRole {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_name", referencedColumnName = "userName")
     private AppUser appUser;
+
+    public UserRole() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public AppRole getAppRole() {
+        return appRole;
+    }
+
+    public void setAppRole(AppRole appRole) {
+        this.appRole = appRole;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
 }

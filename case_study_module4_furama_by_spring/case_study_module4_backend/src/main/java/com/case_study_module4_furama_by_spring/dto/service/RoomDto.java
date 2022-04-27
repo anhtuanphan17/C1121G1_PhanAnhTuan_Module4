@@ -3,17 +3,21 @@ package com.case_study_module4_furama_by_spring.dto.service;
 import com.case_study_module4_furama_by_spring.model.service_entity.RentType;
 import com.case_study_module4_furama_by_spring.model.service_entity.ServiceType;
 
+import javax.validation.constraints.Pattern;
+
 public class RoomDto {
     private Integer serviceId;
+    @Pattern(regexp = "^(DV-){1}[0-9]{4}$", message = "corect format is DV-0000")
     private String serviceCode;
     private String serviceName;
+
     private Integer serviceArea;
     private Double serviceCost;
     private Integer serviceMaxPeople;
     private String standardRoom;
-    private String descriptionOtherConvenience;
-    private Double poolArea;
-    private Integer numberOfFloors;
+
+
+
     private String freeServiceInclude;
 
     private RentType rentType;
@@ -79,29 +83,6 @@ public class RoomDto {
         this.standardRoom = standardRoom;
     }
 
-    public String getDescriptionOtherConvenience() {
-        return descriptionOtherConvenience;
-    }
-
-    public void setDescriptionOtherConvenience(String descriptionOtherConvenience) {
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
-    }
-
-    public Double getPoolArea() {
-        return poolArea;
-    }
-
-    public void setPoolArea(Double poolArea) {
-        this.poolArea = poolArea;
-    }
-
-    public Integer getNumberOfFloors() {
-        return numberOfFloors;
-    }
-
-    public void setNumberOfFloors(Integer numberOfFloors) {
-        this.numberOfFloors = numberOfFloors;
-    }
 
     public RentType getRentType() {
         return rentType;

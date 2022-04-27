@@ -16,9 +16,8 @@
     <span style="color: greenyellow" th:text="${message}"></span>
 </p>
 
-<table class="table table-striped">
+<table class="table table-hover">
     <tr>
-        <th>No.</th>
         <th>Service ID</th>
         <th>Service Code</th>
         <th>Service Name</th>
@@ -35,7 +34,6 @@
     </tr>
 
     <tr th:each="serviceEntity, loop:${serviceList}">
-        <td th:text="${loop.count}"></td>
         <td th:text="${serviceEntity.serviceId}"></td>
         <td th:text="${serviceEntity.serviceCode}"></td>
         <td th:text="${serviceEntity.serviceName}"></td>
@@ -52,8 +50,6 @@
     </tr>
 </table>
 
-
-<!--Modal create-->
 
 
 <!-- Modal -->

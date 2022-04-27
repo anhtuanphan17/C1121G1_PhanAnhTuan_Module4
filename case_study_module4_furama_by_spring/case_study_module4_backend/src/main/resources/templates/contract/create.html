@@ -6,17 +6,6 @@
 
 </head>
 <body>
-<!--private Integer contractId;-->
-<!--private String contractStartDate;-->
-<!--private String contractEndDate;-->
-<!--private Double contractDeposit;-->
-<!--private Double contractTotalMoney;-->
-
-<!--private Employee employee;-->
-
-<!--private Customer customer;-->
-
-<!--private ServiceEntity service;-->
 
 <div class="container mx-auto w-50 bg-light">
     <h1>Create Contract Form</h1>
@@ -44,16 +33,7 @@
             <input type="text" class="form-control" th:field="*{contractTotalMoney}">
             <div th:if="${#fields.hasErrors('contractTotalMoney')}" th:errors="*{contractTotalMoney}"></div>
         </div>
-<!--        <div class="form-group">-->
-<!--            <label>Employee ID</label>-->
-<!--            <input type="text" class="form-control" th:field="*{employee.employeeId}">-->
-<!--            <div  th:errors="*{employee}"></div>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label>Customer ID</label>-->
-<!--            <input type="text" class="form-control" th:field="*{customer.customerCode}">-->
-<!--            <div  th:errors="*{customer}"></div>-->
-<!--        </div>-->
+
         <div class="form-group">
             <label>Customer Code</label>
             <select th:field="*{customer}">

@@ -55,7 +55,7 @@ public class EmployeeController {
     @GetMapping("/list")
     public String showCustomerList(@PageableDefault(value = 2) Pageable pageable, @RequestParam Optional<String> searchWord, ModelMap modelMap) {
         String searchWordValue = searchWord.orElse("");
-        Page<Employee> employeeList = employeeService.findAllEmployee(pageable);
+        Page<Employee> employeeList = employeeService.findAllEmployeeByName(searchWordValue,pageable);
         modelMap.addAttribute("employeeList", employeeList);
         modelMap.addAttribute("searchWordValue", searchWordValue);
         return "employee/list";
@@ -70,6 +70,10 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public String createEmployee(@Valid @ModelAttribute EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if(bindingResult.hasFieldErrors()){
+            return "employee/create";
+        }
+
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
 
@@ -131,6 +135,9 @@ public class EmployeeController {
 
     @PostMapping("/edit")
     public String editEmployee(@Valid @ModelAttribute EmployeeDto employeeDto,BindingResult bindingResult,RedirectAttributes redirectAttributes){
+        if(bindingResult.hasFieldErrors()){
+            return "employee/create";
+        }
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto,employee);
 
@@ -160,4 +167,12 @@ public class EmployeeController {
         return "redirect:/employee/list";
     }
 
+    @GetMapping("/delete")
+    public String deleteEmployee(@RequestParam("id") Integer id,RedirectAttributes redirectAttributes){
+        Employee employee = employeeService.findEmployeeById(id);
+//        employee.setActive(0);
+        employeeService.remove(employee);
+        redirectAttributes.addFlashAttribute("message","removed successfully");
+        return "redirect:/employee/list";
+    }
 }

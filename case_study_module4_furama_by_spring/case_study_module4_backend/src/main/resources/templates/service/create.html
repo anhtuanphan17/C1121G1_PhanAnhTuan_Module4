@@ -25,17 +25,18 @@
 <body style="background-color: beige">
 
 <!--Villa form -->
-<div class=" col-4 mx-auto  bg-light" th:if="${serviceTypeId == 1}">
-    <form method="post" th:action="@{/service/saveVilla}" th:object="${VillaDto}">
+<div class=" col-4 mx-auto bg-light" th:if="${serviceTypeId == 1}">
+    <form method="post" th:action="@{/service/saveVilla}" th:object="${villaDto}">
         <div class="modal-header">
             <h5 class="modal-title">Add new villa</h5>
         </div>
         <div class="modal-body">
+            <input type="hidden" name="serviceTypeId" th:value="1">
 
             <div class="form-group mb-4" id="serviceCode">
                 <div class="form-outline">
                     <input type="text"  class="form-control" th:field="*{serviceCode}"/>
-                    <label class="form-label" for="serviceCode">service Code<span class="text-danger">(*)</span></label>
+                    <label class="form-label" for="serviceCode">Service Code<span class="text-danger">(*)</span></label>
                 </div>
                 <small class="text-danger" th:if="${#fields.hasErrors('serviceCode')}" th:errors="*{serviceCode}"></small>
             </div>
@@ -73,7 +74,7 @@
             </div>
 
             <div id="standardRoom">
-                <label class="form-label" for="standardRoom">Standard Room<span class="text-danger">(*)</span></label>
+                <label class="form-label" for="standardRoom">Room standard<span class="text-danger">(*)</span></label>
                 <select th:field="*{standardRoom}"  class="form-control mb-4">
                     <option th:each="item: ${standardRoomList}" th:value="${item}" th:text="${item}"></option>
                 </select>
@@ -82,7 +83,7 @@
             <div class="form-group mb-4" id="descritionOtherConvenience">
                 <div class="form-outline">
                     <input type="text"  class="form-control"  th:field="*{descriptionOtherConvenience}"/>
-                    <label class="form-label" for="descritionOtherConvenience">Descrition Of Other Convenience<span class="text-danger">(*)</span></label>
+                    <label class="form-label" for="descritionOtherConvenience">Description Other Convenience<span class="text-danger">(*)</span></label>
                 </div>
                 <small class="text-danger" th:if="${#fields.hasErrors('descriptionOtherConvenience')}" th:errors="*{descriptionOtherConvenience}"></small>
             </div>
@@ -95,10 +96,10 @@
                 <small class="text-danger" th:if="${#fields.hasErrors('poolArea')}" th:errors="*{poolArea}"></small>
             </div>
 
-            <div class="form-group mb-4" id="numberOfFloors">
+            <div class="form-group mb-4" id="numberOdFloors">
                 <div class="form-outline">
                     <input type="text"  class="form-control"  th:field="*{numberOfFloors}"/>
-                    <label class="form-label" for="numberOfFloors">number Of Floors<span class="text-danger">(*)</span></label>
+                    <label class="form-label" for="numberOdFloors">Number Of Floors<span class="text-danger">(*)</span></label>
                 </div>
                 <small class="text-danger" th:if="${#fields.hasErrors('numberOfFloors')}" th:errors="*{numberOfFloors}"></small>
             </div>
@@ -111,14 +112,14 @@
             </div>
         </div>
         <div class="modal-footer">
-            <input type="submit" class="btn btn-primary" value="Create"/>
+            <input type="submit" class="btn btn-primary" value="Thêm mới"/>
         </div>
     </form>
 </div>
 
 <!--House form -->
 <div class=" col-4 mx-auto bg-light" th:if="${serviceTypeId == 2}">
-    <form method="post" th:action="@{/service/saveHouse}" th:object="${HouseDto}">
+    <form method="post" th:action="@{/service/saveHouse}" th:object="${houseDto}">
         <div class="modal-header">
             <h5 class="modal-title">Add New House</h5>
         </div>
@@ -136,7 +137,7 @@
                     <input type="text"  class="form-control" th:field="*{serviceName}"/>
                     <label class="form-label" for="serviceName1">Service Name<span class="text-danger">(*)</span></label>
                 </div>
-                <small class="text-danger" th:if="${#fields.hasErrors('serviceName')}" th:errors="*{serviceName}"></small>
+                <small class="text-danger" th:if="${#fields.hasErrors('serviceName')}" th:errors="*{serviceName}" ></small>
             </div>
 
             <div class="form-group mb-4" id="serviceArea1">
@@ -152,7 +153,7 @@
                     <input type="text"  class="form-control"  th:field="*{serviceCost}"/>
                     <label class="form-label" for="serviceCost1">Service Cost<span class="text-danger">(*)</span></label>
                 </div>
-                <small class="text-danger" th:if="${#fields.hasErrors('serviceCost')}" th:errors="*{serviceCost}"></small>
+                <small class="text-danger" th:if="${#fields.hasErrors('serviceCost')}" th:errors="*{serviceCost}" ></small>
             </div>
 
             <div class="form-group mb-4" id="serviceMaxPeople1">
@@ -160,7 +161,7 @@
                     <input type="text"  class="form-control"  th:field="*{serviceMaxPeople}"/>
                     <label class="form-label" for="serviceMaxPeople1">Max People<span class="text-danger">(*)</span></label>
                 </div>
-                <small class="text-danger" th:if="${#fields.hasErrors('serviceMaxPeople')}" th:errors="*{serviceMaxPeople}"></small>
+                <small class="text-danger" th:if="${#fields.hasErrors('serviceMaxPeople')}" th:errors="*{serviceMaxPeople}" ></small>
             </div>
 
             <div id="standardRoom1">
@@ -173,9 +174,9 @@
             <div class="form-group mb-4" id="descritionOtherConvenience1">
                 <div class="form-outline">
                     <input type="text"  class="form-control"  th:field="*{descriptionOtherConvenience}"/>
-                    <label class="form-label" for="descritionOtherConvenience1">Description Of OtherConvenience<span class="text-danger">(*)</span></label>
+                    <label class="form-label" for="descritionOtherConvenience1">Description Of OtherConvenience<span >(*)</span></label>
                 </div>
-                <small class="text-danger" th:if="${#fields.hasErrors('descriptionOtherConvenience')}" th:errors="*{descriptionOtherConvenience}"></small>
+                <small class="text-danger" th:if="${#fields.hasErrors('descriptionOtherConvenience')}" th:errors="*{descriptionOtherConvenience}" ></small>
             </div>
 
             <div class="form-group mb-4" id="numberOdFloors1">
@@ -183,7 +184,7 @@
                     <input type="text"  class="form-control"  th:field="*{numberOfFloors}"/>
                     <label class="form-label" for="numberOdFloors1">number Of Floors<span class="text-danger">(*)</span></label>
                 </div>
-                <small class="text-danger" th:if="${#fields.hasErrors('numberOfFloors')}" th:errors="*{numberOfFloors}"></small>
+                <small class="text-danger" th:if="${#fields.hasErrors('numberOfFloors')}" th:errors="*{numberOfFloors}" ></small>
             </div>
 
             <div id="rentType1">
@@ -201,7 +202,7 @@
 
 <!--Room form -->
 <div class=" col-4 mx-auto  bg-light" th:if="${serviceTypeId == 3}">
-    <form method="post" th:action="@{/service/saveRoom}" th:object="${RoomDto}">
+    <form method="post" th:action="@{/service/saveRoom}" th:object="${roomDto}">
         <div class="modal-header">
             <h5 class="modal-title">Add New Room</h5>
         </div>
@@ -219,7 +220,7 @@
                     <input type="text"  class="form-control" th:field="*{serviceName}"/>
                     <label class="form-label" for="serviceName2">Service Name<span class="text-danger">(*)</span></label>
                 </div>
-                <small class="text-danger" th:if="${#fields.hasErrors('serviceName')}" th:errors="*{serviceName}"></small>
+                <small class="text-danger" th:if="${#fields.hasErrors('serviceName')}" th:errors="*{serviceName}" ></small>
             </div>
 
             <div class="form-group mb-4" id="serviceArea2">
@@ -227,7 +228,7 @@
                     <input type="text"  class="form-control" th:field="*{serviceArea}"/>
                     <label class="form-label" for="serviceArea2">Area<span class="text-danger">(*)</span></label>
                 </div>
-                <small class="text-danger" th:if="${#fields.hasErrors('serviceArea')}" th:errors="*{serviceArea}"></small>
+                <small class="text-danger" th:if="${#fields.hasErrors('serviceArea')}" th:errors="*{serviceArea}" ></small>
             </div>
 
             <div class="form-group mb-4" id="serviceCost2">
@@ -243,7 +244,7 @@
                     <input type="text"  class="form-control"  th:field="*{serviceMaxPeople}"/>
                     <label class="form-label" for="serviceMaxPeople2">Max People<span class="text-danger">(*)</span></label>
                 </div>
-                <small class="text-danger" th:if="${#fields.hasErrors('serviceMaxPeople')}" th:errors="*{serviceMaxPeople}"></small>
+                <small class="text-danger" th:if="${#fields.hasErrors('serviceMaxPeople')}" th:errors="*{serviceMaxPeople}" ></small>
             </div>
 
             <div class="form-group mb-4" id="freeServiceInclude2">
@@ -251,7 +252,7 @@
                     <input type="text"  class="form-control"  th:field="*{freeServiceInclude}"/>
                     <label class="form-label" for="freeServiceInclude2">Free Service Include<span class="text-danger">(*)</span></label>
                 </div>
-                <small class="text-danger" th:if="${#fields.hasErrors('freeServiceInclude')}" th:errors="*{freeServiceInclude}"></small>
+                <small class="text-danger" th:if="${#fields.hasErrors('freeServiceInclude')}" th:errors="*{freeServiceInclude}" ></small>
             </div>
 
             <div id="rentType2">

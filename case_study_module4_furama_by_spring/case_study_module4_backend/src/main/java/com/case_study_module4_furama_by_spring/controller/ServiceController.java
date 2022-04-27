@@ -18,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -62,13 +61,12 @@ public class ServiceController {
 
     @GetMapping(value = "/create")
     public String showCreateForm(@RequestParam Integer serviceType,ModelMap modelMap) {
-        ModelAndView modelAndView = new ModelAndView("service/create");
         if (serviceType == 1) {
-            modelMap.addAttribute("VillaDto", new VillaDto());
+            modelMap.addAttribute("villaDto", new VillaDto());
         } else if (serviceType == 2) {
-            modelMap.addAttribute("HouseDto", new HouseDto());
+            modelMap.addAttribute("houseDto", new HouseDto());
         } else if (serviceType == 3) {
-            modelMap.addAttribute("RoomDto", new RoomDto());
+            modelMap.addAttribute("roomDto", new RoomDto());
         }
         modelMap.addAttribute("serviceTypeId", serviceType);
         return "service/create";
@@ -76,9 +74,10 @@ public class ServiceController {
 
     @PostMapping(value = "/saveVilla")
     public String saveVilla(@Valid @ModelAttribute("villaDto") VillaDto villaDto,
-                            BindingResult bindingResult) {
+                            BindingResult bindingResult,@RequestParam Integer serviceTypeId, ModelMap modelMap) {
         if (bindingResult.hasErrors()) {
-            return "/service/create";
+            modelMap.addAttribute("serviceTypeId",serviceTypeId);
+            return "service/create";
         }
         villaDto.setServiceType(new ServiceType(1, "Villa"));
         ServiceEntity serviceEntity = new ServiceEntity();
@@ -91,9 +90,10 @@ public class ServiceController {
 
     @PostMapping(value = "/saveHouse")
     public String saveHouse(@Valid @ModelAttribute("houseDto") HouseDto houseDto,
-                            BindingResult bindingResult) {
+                            BindingResult bindingResult,ModelMap modelMap) {
         if (bindingResult.hasErrors()) {
-            return "/service/create";
+            modelMap.addAttribute("serviceTypeId",2);
+            return "service/create";
         }
         houseDto.setServiceType(new ServiceType(2, "House"));
         ServiceEntity serviceEntity = new ServiceEntity();
@@ -106,9 +106,11 @@ public class ServiceController {
 
     @PostMapping(value = "/saveRoom")
     public String saveRoom(@Valid @ModelAttribute("roomDto") RoomDto roomDto,
-                           BindingResult bindingResult) {
+                           BindingResult bindingResult, ModelMap modelMap) {
         if (bindingResult.hasErrors()) {
-            return "/service/create";
+            modelMap.addAttribute("serviceTypeId",3);
+
+            return "service/create";
         }
         roomDto.setServiceType(new ServiceType(3, "Room"));
         ServiceEntity serviceEntity = new ServiceEntity();

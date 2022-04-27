@@ -20,6 +20,8 @@ public class AppUser {
     @OneToMany(mappedBy = "appUser")
     private Set<UserRole> userRoles;
 
+    public AppUser() {
+    }
 
     public String getUserName() {
         return userName;

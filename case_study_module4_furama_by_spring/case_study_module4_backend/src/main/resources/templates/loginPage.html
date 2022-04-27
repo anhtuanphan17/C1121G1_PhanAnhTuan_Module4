@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        body {
+            background-color: lightgreen;
+        }
+        header {
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 15vh;
+            box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+        }
+        h1 {
+            letter-spacing: 1.5vw;
+            font-family: 'system-ui';
+            text-transform: uppercase;
+            text-align: center;
+        }
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 75vh;
+            width: 100%;
+            background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Mountains-1412683.svg/1280px-Mountains-1412683.svg.png) no-repeat center center;
+            background-size: cover;
+        }
+        .form_class {
+            width: 500px;
+            padding: 40px;
+            border-radius: 8px;
+            background-color: white;
+            font-family: 'system-ui';
+            box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+        }
+        .form_div {
+            text-transform: uppercase;
+        }
+        .form_div > label {
+            letter-spacing: 3px;
+            font-size: 1rem;
+        }
+        .info_div {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .info_div {
+            letter-spacing: 1px;
+        }
+        .field_class {
+            width: 100%;
+            border-radius: 6px;
+            border-style: solid;
+            border-width: 1px;
+            padding: 5px 0px;
+            text-indent: 6px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-family: 'system-ui';
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+        .submit_class {
+            border-style: none;
+            border-radius: 5px;
+            background-color: #FFE6D4;
+            padding: 8px 20px;
+            font-family: 'system-ui';
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            display: block;
+            margin: auto;
+            margin-top: 10px;
+            box-shadow: 2px 2px 5px rgb(0,0,0,0.2);
+            cursor: pointer;
+        }
+        footer {
+            height: 10vh;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: -5px -5px 10px rgb(0,0,0,0.3);
+        }
+        footer > p {
+            text-align: center;
+            font-family: 'system-ui';
+            letter-spacing: 3px;
+        }
+        footer > p > a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+<!-- Include _menu.html -->
+<th:block th:include="/_menu"></th:block>
+
+<!--<h1>Login</h1>-->
+
+<!-- /login?error=true -->
+<div th:if="${#request.getParameter('error') == 'true'}"
+     style="color:red;margin:10px 0px;">
+    Login Failed!!!<br/>
+    Reason :
+    <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+          th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                Static summary
+         </span>
+
+</div>
+
+<!--<h3>Enter user name and password:</h3>-->
+<!--<form name='f' th:action="@{/j_spring_security_check}" method='POST'>-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>User:</td>-->
+<!--            <td><input type='text' name='username' value=''></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Password:</td>-->
+<!--            <td><input type='password' name='password' /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Remember Me?</td>-->
+<!--            <td><input type="checkbox" name="remember-me" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><input name="submit" type="submit" value="submit" /></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+
+<header>
+    <h1>Login</h1>
+</header>
+<main>
+    <form id="login_form" class="form_class" th:action="@{/j_spring_security_check}" method="post">
+        <div class="form_div">
+            <label>Login:</label>
+            <input class="field_class" name="username" type="text" placeholder="user name" autofocus>
+            <label>Password:</label>
+            <input id="pass" class="field_class" name="password" type="password" placeholder="password">
+            <button class="submit_class" type="submit" form="login_form" >Enter</button>
+            <label>remember me</label>
+            <input type="checkbox" name="remember-me"/>
+        </div>
+
+    </form>
+</main>
+
+
+</body>
+
+</html>

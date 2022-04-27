@@ -5,11 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface IEmployeeService {
-    Page<Employee> findAllEmployee(Pageable pageable);
+    Page<Employee> findAllEmployeeByName(String searchWord,Pageable pageable);
 
     void save(Employee employee);
 
     Employee findEmployeeById(Integer id);
 
     Iterable<Employee> findAll();
+
+    void remove(Employee employee);
 }

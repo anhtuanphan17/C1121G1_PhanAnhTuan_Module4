@@ -1,14 +1,17 @@
 package com.case_study_module4_furama_by_spring.controller;
 
 import com.case_study_module4_furama_by_spring.dto.customer.CustomerDto;
+import com.case_study_module4_furama_by_spring.model.contract.ICustomerUserService;
 import com.case_study_module4_furama_by_spring.model.customer.Customer;
 import com.case_study_module4_furama_by_spring.model.customer.CustomerType;
+import com.case_study_module4_furama_by_spring.service.contract_service.IContractService;
 import com.case_study_module4_furama_by_spring.service.customer_service.ICustomerService;
 import com.case_study_module4_furama_by_spring.service.customer_service.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,6 +33,10 @@ public class CustomerController {
     @Autowired
     ICustomerTypeService customerTypeService;
 
+    @Autowired
+    IContractService contractService;
+
+
     @ModelAttribute("customerTypeList")
     public List<CustomerType> customerType() {
         return customerTypeService.findALlCustomerType();
@@ -38,7 +45,7 @@ public class CustomerController {
     @GetMapping("/list")
     public String showCustomerList(@PageableDefault(value = 2) Pageable pageable, @RequestParam Optional<String> searchWord, ModelMap modelMap) {
         String searchWordValue = searchWord.orElse("");
-        Page<Customer> customerList = customerService.findALlCustomer(pageable);
+        Page<Customer> customerList = customerService.findALlCustomer(searchWordValue,pageable);
         modelMap.addAttribute("customerList", customerList);
         modelMap.addAttribute("searchWordValue", searchWordValue);
         return "customer/list";
@@ -54,6 +61,10 @@ public class CustomerController {
 
     @PostMapping("/create")
     public String createCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasFieldErrors()) {
+            return "customer/create";
+        }
+
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto, customer);
         CustomerType customerType = new CustomerType();
@@ -61,7 +72,7 @@ public class CustomerController {
         customerType.setCustomerTypeName(customerDto.getCustomerType().getCustomerTypeName());
         customer.setCustomerType(customerType);
         customerService.save(customer);
-        redirectAttributes.addFlashAttribute("message","added customer successfully");
+        redirectAttributes.addFlashAttribute("message", "added customer successfully");
 
         return "redirect:/customer/list";
     }
@@ -80,30 +91,44 @@ public class CustomerController {
     }
 
     @PostMapping("/edit")
-    public String editCustomer(@Valid @ModelAttribute CustomerDto customerDto,BindingResult bindingResult){
-    Customer customer = new Customer();
-    BeanUtils.copyProperties(customerDto,customer);
-    CustomerType customerType = new CustomerType();
-    customerType.setCustomerTypeId(customerDto.getCustomerType().getCustomerTypeId());
-    customerType.setCustomerTypeName(customerDto.getCustomerType().getCustomerTypeName());
-    customer.setCustomerType(customerType);
-    customerService.save(customer);
-    return "redirect:/customer/list";
+    public String editCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult) {
+        if (bindingResult.hasFieldErrors()) {
+            return "customer/create";
+        }
+
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerDto, customer);
+        CustomerType customerType = new CustomerType();
+        customerType.setCustomerTypeId(customerDto.getCustomerType().getCustomerTypeId());
+        customerType.setCustomerTypeName(customerDto.getCustomerType().getCustomerTypeName());
+        customer.setCustomerType(customerType);
+        customerService.save(customer);
+        return "redirect:/customer/list";
     }
 
     @GetMapping("/delete/{id}")
-    public String showDeleteForm(@PathVariable Integer id, ModelMap modelMap){
+    public String showDeleteForm(@PathVariable Integer id, ModelMap modelMap) {
         Customer customer = customerService.findCustomerById(id);
-        modelMap.addAttribute("customer",customer);
+        modelMap.addAttribute("customer", customer);
         return "customer/delete";
 
     }
 
     @PostMapping("/delete")
-    public String deleteCustomer(@ModelAttribute Customer customer){
+    public String deleteCustomer(@ModelAttribute Customer customer) {
         customerService.remove(customer);
         return "redirect:/customer/list";
     }
 
+
+    @GetMapping("/using-service")
+    public String showCustomerUsingService(@PageableDefault(value = 2,
+            sort = "customerName", direction = Sort.Direction.DESC) Pageable pageable,
+                                           ModelMap modelMap) {
+
+        List<ICustomerUserService> customerUserServiceList = this.contractService.findCustomerUsingService();
+        modelMap.addAttribute("customerUsingService",customerUserServiceList);
+        return "customer/customerUsingServiceList";
+    }
 
 }

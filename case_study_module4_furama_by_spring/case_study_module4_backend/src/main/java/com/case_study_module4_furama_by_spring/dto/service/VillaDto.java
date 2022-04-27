@@ -3,16 +3,23 @@ package com.case_study_module4_furama_by_spring.dto.service;
 import com.case_study_module4_furama_by_spring.model.service_entity.RentType;
 import com.case_study_module4_furama_by_spring.model.service_entity.ServiceType;
 
+import javax.validation.constraints.Pattern;
+
 public class VillaDto {
     private Integer serviceId;
+    @Pattern(regexp = "^(DV-){1}[0-9]{4}$", message = "corect format is DV-0000")
     private String serviceCode;
     private String serviceName;
     private Integer serviceArea;
     private Double serviceCost;
+//    @Pattern(regexp = "^[1-9]*[0-9]*$",message = "must be > 0")
     private Integer serviceMaxPeople;
     private String standardRoom;
     private String descriptionOtherConvenience;
+//    @Pattern(regexp = "^[1-9]*[0-9]*$",message = "must be > 0")
     private Double poolArea;
+//    @Pattern(regexp = "^[1-9]*[0-9]*$",message = "must be > 0")
+
     private Integer numberOfFloors;
 
     private RentType rentType;

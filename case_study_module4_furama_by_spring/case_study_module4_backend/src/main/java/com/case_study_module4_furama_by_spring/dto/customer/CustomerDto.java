@@ -2,10 +2,11 @@ package com.case_study_module4_furama_by_spring.dto.customer;
 
 import com.case_study_module4_furama_by_spring.model.customer.CustomerType;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-public class CustomerDto {
+public class CustomerDto  {
 
     private Integer customerId;
     @NotBlank
@@ -14,12 +15,16 @@ public class CustomerDto {
     @NotBlank
     @Pattern(regexp = "^$|^[a-zA-Z]{3,}$")
     private String customerName;
-
+    @Pattern(regexp = "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$", message = "invalid date")
     private String customerBirthday;
     private Integer customerGender;
+    @Pattern(regexp = "^\\d{9}|\\d{11}$",message = "Id card must be 9 or 11 number")
     private String customerIdCard;
+    @Pattern(regexp = "^(((090)|(091)|(\\+8490)|(\\+8491))\\d{7}$)",message = "correct format phone number is 090xxxxxxx or 091xxxxxxxx")
     private String customerPhone;
+    @Email
     private String customerEmail;
+    @NotBlank
     private String customerAddress;
     private int active = 1;
 
@@ -116,4 +121,6 @@ public class CustomerDto {
     public void setActive(int active) {
         this.active = active;
     }
+
+
 }

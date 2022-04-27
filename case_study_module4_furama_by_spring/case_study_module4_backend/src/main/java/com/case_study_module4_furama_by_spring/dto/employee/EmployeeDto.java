@@ -5,16 +5,25 @@ import com.case_study_module4_furama_by_spring.model.employee.EducationDegree;
 import com.case_study_module4_furama_by_spring.model.employee.Position;
 import com.case_study_module4_furama_by_spring.model.user.AppUser;
 
-import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class EmployeeDto {
     private Integer employeeId;
+    @NotBlank
+    @Pattern(regexp = "^$|^[a-zA-Z]{3,}$")
     private String employeeName;
+    @Pattern(regexp = "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$", message = "invalid date")
     private String employeeBirthday;
+    @Pattern(regexp = "^\\d{9}|\\d{11}$",message = "Id card must be 9 or 11 number")
     private String employeeIdCard;
     private Double employeeSalary;
+    @Pattern(regexp = "^(((090)|(091)|(\\+8490)|(\\+8491))\\d{7}$)",message = "correct format phone number is 090xxxxxxx or 091xxxxxxxx")
     private String employeePhone;
+    @Email
     private String employeeEmail;
+    @NotBlank
     private String employeeAddress;
     private int active = 1;
     private Position position;

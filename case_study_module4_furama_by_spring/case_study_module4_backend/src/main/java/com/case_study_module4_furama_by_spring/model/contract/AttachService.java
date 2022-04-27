@@ -7,7 +7,7 @@ import java.util.Set;
 public class AttachService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer attachServiceID;
+    private Integer attachServiceId;
     private String attachServiceName;
     private Double attachServiceCost;
     private Integer attachServiceUnit;
@@ -16,12 +16,12 @@ public class AttachService {
     @OneToMany(mappedBy = "attachService")
     private Set<ContractDetail> contractDetailSet;
 
-    public Integer getAttachServiceID() {
-        return attachServiceID;
+    public Integer getAttachServiceId() {
+        return attachServiceId;
     }
 
-    public void setAttachServiceID(Integer attachServiceID) {
-        this.attachServiceID = attachServiceID;
+    public void setAttachServiceId(Integer attachServiceID) {
+        this.attachServiceId = attachServiceID;
     }
 
     public String getAttachServiceName() {

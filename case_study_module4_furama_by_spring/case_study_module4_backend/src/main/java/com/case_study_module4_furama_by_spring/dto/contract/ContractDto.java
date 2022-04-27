@@ -3,8 +3,12 @@ package com.case_study_module4_furama_by_spring.dto.contract;
 import com.case_study_module4_furama_by_spring.model.customer.Customer;
 import com.case_study_module4_furama_by_spring.model.employee.Employee;
 import com.case_study_module4_furama_by_spring.model.service_entity.ServiceEntity;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-public class ContractDto {
+import java.time.format.DateTimeFormatter;
+
+public class ContractDto implements Validator {
     private Integer contractId;
     private String contractStartDate;
     private String contractEndDate;
@@ -82,5 +86,18 @@ public class ContractDto {
 
     public void setService(ServiceEntity service) {
         this.service = service;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        ContractDto contractDto = (ContractDto) target;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+
     }
 }

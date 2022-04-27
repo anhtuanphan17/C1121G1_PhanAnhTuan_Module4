@@ -8,12 +8,17 @@
 <div th:replace="/customer/layout :: navbar">
 
 </div>
-<a th:href="@{/customer/create}">Add new customer</a>
+<a th:href="@{/customer/create}"><button type="button" class="btn btn-primary " >Add new customer</button></a>
 <p th:if="${message}">
     <span style="color: greenyellow" th:text="${message}"></span>
 </p>
+<a href="/customer/using-service"><button type="button" class="btn btn-primary " >Customer Using Service</button></a>
 
-<table class="table table-striped">
+<form class="form-inline my-2 my-lg-0" method="get">
+    <input class="form-control mr-sm-2" type="search" placeholder="search by name" name="searchWord" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+</form>
+<table class="table table-hover">
     <tr>
         <th>No.</th>
         <th>Customer ID</th>
